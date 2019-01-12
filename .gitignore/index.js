@@ -77,6 +77,7 @@ bot.on('message', message => {
         message.channel.sendEmbed(infos);
     }});
 
+bot.on('message', message => {
     if (message.content.startsWith(prefix + "sondage")) {
         let args = message.content.split(" ").slice(1);
         let thingToEcho = arg.join(" ")
@@ -93,4 +94,4 @@ bot.on('message', message => {
         });
         }else{
             return message.reply("Tu n'as pas la permission.")
-        }
+        }})
