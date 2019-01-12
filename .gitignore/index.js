@@ -15,8 +15,9 @@ bot.on('message', message => {
         var help = new Discord.RichEmbed()
             .setTitle("__Liste des commandes disponibles:__")
             .addField("help","Affiche ce message.")
-            .addField("liens","Donne des liens utiles ^^")
+            .addField("liens","Donne des liens utiles ^^.")
             .addField("discordinfos","Donne les informations du serveur.")
+            .addField("sondage","permet de crée un sondage.")
             .addField("helpmod","Affiche les commandes de modérations.")
             .setColor("RANDOM")
             .setFooter("Commandes faites par: Skylost#5655")
@@ -75,3 +76,21 @@ bot.on('message', message => {
         .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos);
     }});
+
+    if (message.content.startsWith(prefix + "sondage")) {
+        let args = message.content.split(" ").slice(1);
+        let thingToEcho = arg.join(" ")
+        var sondage = new Discord.RichEmbed()
+            .setDescription("Sondage")
+            .addField(thingToEcho, "Répondre avec :white_check_mark: ou :x:")
+            .setColor("RANDOM")
+            .setTimestamp()
+        message.channel.sendEmbed(sondage)
+        .then(function (message) { 
+            message.react("❌")
+            message.react("✅")
+        }).catch(function() {
+        });
+        }else{
+            return message.reply("Tu n'as pas la permission.")
+        }
