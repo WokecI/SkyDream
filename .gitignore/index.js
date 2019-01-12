@@ -18,7 +18,7 @@ bot.on('message', message => {
             .addField("liens","Donne des liens utiles ^^")
             .addField("helpmod","Affiche les commandes de modérations.")
             .setColor("RANDOM")
-            .setFooter("Comandes faites par: Skylost#5655")
+            .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(help);
     }
 
@@ -36,7 +36,7 @@ bot.on('message', message => {
             .addField("Le Discord officiel:","[Clique ici](https://discord.gg/A5dd5ZX) pour rejoindre le discord officiel de SkyDream !", true)
             .addField("La cousine Plisk:","[Clique ici](https://discord.gg/SthKtBJ) pour rejoindre le serveur de notre cousine Plisk !", true)
             .setColor("RANDOM")
-            .setFooter("Comandes faites par: Skylost#5655")
+            .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(liens);
     }
 
@@ -47,7 +47,7 @@ bot.on('message', message => {
             .addField("helpmod","Affiche ce message.")
             .addField("clear [nombre entre 1 et 100]","fait le ménage.")
             .setColor("RANDOM")
-            .setFooter("Comandes faites par: Skylost#5655")
+            .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(helpm);
     }
 
@@ -60,7 +60,19 @@ bot.on('message', message => {
             if (!count) return message.channel.send("Veuillez indiquer un nombre de messages à supprimer")
             if (isNaN(count)) return message.channel.send("Veuillez indiquer un nombre valide")
             if (count < 1 || count > 100) return message.channel.send("Veuillez indiquer un nombre entre 1 et 100")
-            message.channel.bulkDelete(parseInt(count) + 1)
-        }
-    }
-,)
+         message.channel.bulkDelete(parseInt(count) + 1)
+     }
+ })
+
+ bot.on('message', message => {
+    if (message.content === prefix + "discordinfos"){
+        var infos = new Discord.RichEmbed()
+        .setDescription("Informations du discord:")
+        .addField("Nom du discord:", message.guild.name)
+        .addField("Crée le:",message.guild.createAt)
+        .addField("Tu as rejoin le:",message.guild.joinedAt)
+        .addField("Utilisateurs sur le discord:",message.guild.memberCount)
+        .setColor("RANDOM")
+        .setFooter("Commandes faites par: Skylost#5655")
+        message.channel.sendEmbed(infos);
+    }});
