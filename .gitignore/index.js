@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 var prefix = ('.')
 
 bot.on('ready', function() {
-    bot.user.setGame(".help | 1 serveurs");
+    bot.user.setGame(".help | 1");
     console.log("Conecté");
 });
 
@@ -69,10 +69,12 @@ bot.on('message', message => {
         var infos = new Discord.RichEmbed()
         .setTitle("__Informations du discord__:")
         .addField("Nom du discord:", message.guild.name)
+        .addField("Propriétaire du serveur:", message.guild.owner)
         .addField("Crée le:",message.guild.createdAt)
         .addField("Tu as rejoin le:",message.guild.joinedAt)
         .addField("Utilisateurs sur le discord:",message.guild.memberCount)
-        .addField("L'avatar du serveur:", message.guild.icon)
+        .addField("L'avatar du serveur:", message.guild.avatar)
+        .addField("Les emojis disponibles:", message.guild.emojis)
         .setColor("RANDOM")
         .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos);
