@@ -10,7 +10,6 @@ bot.on('ready', function() {
 
 bot.login(process.env.TOKEN);
 
- /*help*/
 bot.on('message', message => {
     if (message.content === prefix + "help"){
         var help = new Discord.RichEmbed()
@@ -22,7 +21,6 @@ bot.on('message', message => {
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(help);
     }
-/*fin help*/
 
     if (message.content === 'salut'){
         message.channel.send("Bien le bonjour");
@@ -40,7 +38,7 @@ bot.on('message', message => {
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(liens);
     }
-     /*clear*/
+
     bot.on("message", message => {
         if (!message.guild) return
         let args = message.content.trim().split(/ +/g)
@@ -53,7 +51,6 @@ bot.on('message', message => {
             if (count < 1 || count > 100) return message.channel.send("Veuillez indiquer un nombre entre 1 et 100")
             message.channel.bulkDelete(parseInt(count) + 1)
 
-    /*help mod*/
 bot.on('message', message => {
     if (message.content === prefix + "helpmod"){
         var helpm = new Discord.RichEmbed()
@@ -64,5 +61,5 @@ bot.on('message', message => {
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(helpm);
     }
-    /*fin help mod*/
+
 })}})})
