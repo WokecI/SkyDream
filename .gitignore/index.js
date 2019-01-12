@@ -21,13 +21,15 @@ bot.on('message', message => {
 
     if (message.content === 'ping'){
         message.channel.sendMessage(":white_check_mark: pong :white_check_mark:");
+    }
 
     if (message.content === prefix + "liens"){
-        var lien = new Discord.RichEmbed()
+        var embed = new Discord.RichEmbed()
             .setTitle("Les liens utiles:")
-            .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX)")
+            .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX)", true)
             .setColor("random")
             .setFooter("Comandes faites par: Skylost#5655")
-        message.channel.sendEmbed(lien)
+        message.channel.sendEmbed(embed);
     }
-    }})
+    
+})
