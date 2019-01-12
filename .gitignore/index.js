@@ -72,7 +72,7 @@ bot.on('message', message => {
         .addField("Crée le:",message.guild.createdAt)
         .addField("Tu as rejoin le:",message.guild.joinedAt)
         .addField("Utilisateurs sur le discord:",message.guild.memberCount)
-        .addField("L'avatar du serveur:", message.guild.URLavatarU)
+        .addField("L'avatar du serveur:", message.guild.URLavatar)
         .setColor("RANDOM")
         .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos);
