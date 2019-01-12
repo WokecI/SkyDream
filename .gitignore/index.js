@@ -4,11 +4,11 @@ const bot = new Discord.Client();
 var prefix = ('.')
 
 bot.on('ready', function() {
-    bot.user.setGame(".help | 1");
+    bot.user.setGame(".help | 1 serveurs");
     console.log("Conecté");
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTMzNjM2ODczMTk3NzE1NDU2.DxuvCw.NWQuwj3D0K1c8afhJRQcnwIABzU");
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
@@ -16,14 +16,22 @@ bot.on('message', message => {
             .setTitle("__Liste des commandes disponibles:__")
             .addField("help","Affiche ce message.")
             .addField("liens","Donne des liens utiles ^^")
+            .addField("discordinfos","Donne les informations du serveur.")
             .addField("helpmod","Affiche les commandes de modérations.")
             .setColor("RANDOM")
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(help);
     }
 
-    if (message.content === 'salut'){
-        message.channel.send("Bien le bonjour");
+    if (message.content === prefix + "helpmod"){
+        console.log('helpmod ok')
+        var helpm = new Discord.RichEmbed()
+            .setTitle("__Liste des commandes de modérations:__")
+            .addField("helpmod","Affiche ce message.")
+            .addField("clear [nombre entre 1 et 100]","fait le ménage.")
+            .setColor("RANDOM")
+            .setFooter("Commandes faites par: Skylost#5655")
+        message.channel.sendEmbed(helpm);
     }
 
     if (message.content === 'ping'){
@@ -38,17 +46,6 @@ bot.on('message', message => {
             .setColor("RANDOM")
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(liens);
-    }
-
-  if (message.content === prefix + "helpmod"){
-        console.log('helpmod ok')
-        var helpm = new Discord.RichEmbed()
-            .setTitle("__Liste des commandes de modérations:__")
-            .addField("helpmod","Affiche ce message.")
-            .addField("clear [nombre entre 1 et 100]","fait le ménage.")
-            .setColor("RANDOM")
-            .setFooter("Commandes faites par: Skylost#5655")
-        message.channel.sendEmbed(helpm);
     }
 
     if (!message.guild) return
