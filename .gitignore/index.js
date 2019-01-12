@@ -56,13 +56,13 @@ bot.on('message', message => {
     /*help mod*/
 bot.on('message', message => {
     if (message.content === prefix + "helpmod"){
-        var help = new Discord.RichEmbed()
+        var help1 = new Discord.RichEmbed()
             .setTitle("__Liste des commandes de modérations:__")
             .addField("helpmod","Affiche ce message.")
             .addField("clear [nombre entre 1 et 100]","fait le ménage.")
             .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
-        message.channel.sendEmbed(help);
+        message.channel.sendEmbed(help1);
     }
     /*fin help mod*/
 })}})})
