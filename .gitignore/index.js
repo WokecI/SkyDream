@@ -8,7 +8,7 @@ bot.on('ready', function() {
     console.log("Conecté");
 });
 
-bot.login(process.env.TOKEN);
+bot.login('NTMzNjM2ODczMTk3NzE1NDU2.DxuvCw.NWQuwj3D0K1c8afhJRQcnwIABzU');
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
@@ -34,6 +34,7 @@ bot.on('message', message => {
         var liens = new Discord.RichEmbed()
             .setTitle("__Les liens utiles:__")
             .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX) pour rejoindre le discord !", true)
+            .addField("La cousine:","[Clique ici](https://discord.gg/SthKtBJ) pour rejoindre le serveur de notre cousine Plisk !", true)
             .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(liens);
