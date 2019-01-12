@@ -34,7 +34,7 @@ bot.on('message', message => {
         var liens = new Discord.RichEmbed()
             .setTitle("__Les liens utiles:__")
             .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX) pour rejoindre le discord officiel de SkyDream !", true)
-            .addField("La cousine:","[Clique ici](https://discord.gg/SthKtBJ) pour rejoindre le serveur de notre cousine Plisk !", true)
+            .addField("La cousine Plisk:","[Clique ici](https://discord.gg/SthKtBJ) pour rejoindre le serveur de notre cousine Plisk !", true)
             .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(liens);
