@@ -17,6 +17,7 @@ bot.on('message', message => {
             .setTitle("__Liste des commandes disponibles:__")
             .addField("help","Affiche ce message.")
             .addField("liens","Donne des liens utiles ^^")
+            .addField("helpmod","Affiche les commandes de modérations.")
             .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(help);
@@ -58,10 +59,10 @@ bot.on('message', message => {
         var help = new Discord.RichEmbed()
             .setTitle("__Liste des commandes de modérations:__")
             .addField("helpmod","Affiche ce message.")
-            .addField("clear [nombre entre 1 et 100]","fait le ménage")
+            .addField("clear [nombre entre 1 et 100]","fait le ménage.")
             .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(help);
     }
-/*fin help mod*/
+    /*fin help mod*/
 })}})})
