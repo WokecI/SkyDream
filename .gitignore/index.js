@@ -53,6 +53,7 @@ bot.on('message', message => {
 
 bot.on('message', message => {
     if (message.content === prefix + "helpmod"){
+        console.log('helpmod ok')
         var helpm = new Discord.RichEmbed()
             .setTitle("__Liste des commandes de modérations:__")
             .addField("helpmod","Affiche ce message.")
