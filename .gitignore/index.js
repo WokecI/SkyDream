@@ -41,21 +41,21 @@ bot.on('message', message => {
     }
     
     client.on('guildMemberAdd', member =>{
-        let embed = new Discord.RichEmbed()
+        let embed1 = new Discord.RichEmbed()
             .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
             .setFooter('Nous sommes désormais ' + member.guild.memberCount)
             .setColor('RANDOM')
-        member.guild.channels.get('524172484879187968').send(embed)
+        member.guild.channels.get('524172484879187968').send(embed1)
         member.addRole('524171607493574656')
      
     });
      
     client.on('guildMemberRemove', member =>{
-        let embed = new Discord.RichEmbed()
+        let embed2 = new Discord.RichEmbed()
             .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name)
             .setFooter('Nous sommes désormais ' + member.guild.memberCount)
             .setColor('RANDOM')
-        member.guild.channels.get('524172484879187968').send(embed)
+        member.guild.channels.get('524172484879187968').send(embed2)
     }
 
     )})
