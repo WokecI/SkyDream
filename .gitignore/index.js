@@ -8,7 +8,7 @@ bot.on('ready', function() {
     console.log("Conecté");
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTMzNjM2ODczMTk3NzE1NDU2.Dxv11w.vnd0P3DKKPjhygnZR2NYbwqT8G0");
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
@@ -70,7 +70,7 @@ bot.on('message', message => {
         .addField("Crée le:",message.guild.createdAt)
         .addField("Tu as rejoin le:",message.guild.joinedAt)
         .addField("Utilisateurs sur le discord:",message.guild.memberCount)
-        .thumbnail(message.guild.iconURL)
+        .addField("L'avatar du serveur:", message.guild.iconURL)
         .setColor("RANDOM")
         .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos);
