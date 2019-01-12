@@ -12,7 +12,10 @@ bot.login(process.env.TOKEN);
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
-        message.channel.sendMessage("**__liste des commandes__**: \n .help");
+        var help = new Discord.RichEmbed()
+        .setTitle("__Liste des commandes disponibles:__")
+        .addField
+
     }
 
     if (message.content === 'salut'){
@@ -24,12 +27,12 @@ bot.on('message', message => {
     }
 
     if (message.content === prefix + "liens"){
-        var embed = new Discord.RichEmbed()
+        var liens = new Discord.RichEmbed()
             .setTitle("__Les liens utiles:__")
-            .addField("Le Discord:","[Clique ici pour rejoindre le discord !](https://discord.gg/A5dd5ZX)", true)
+            .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX) pour rejoindre le discord !", true)
             .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
-        message.channel.sendEmbed(embed);
+        message.channel.sendEmbed(liens);
     }
     
 })
