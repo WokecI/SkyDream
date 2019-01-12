@@ -25,9 +25,9 @@ bot.on('message', message => {
 
     if (message.content === prefix + "liens"){
         var embed = new Discord.RichEmbed()
-            .setTitle("Les liens utiles:")
-            .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX)", true)
-            .setColor("random")
+            .setTitle("__Les liens utiles:__")
+            .addField("Le Discord:","[Clique ici pour rejoindre le discord !](https://discord.gg/A5dd5ZX)", true)
+            .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(embed);
     }
