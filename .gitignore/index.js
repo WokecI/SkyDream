@@ -67,9 +67,9 @@ bot.on('message', message => {
  bot.on('message', message => {
     if (message.content === prefix + "discordinfos"){
         var infos = new Discord.RichEmbed()
-        .setDescription("Informations du discord:")
+        .setTitle("__Informations du discord__:")
         .addField("Nom du discord:", message.guild.name)
-        .addField("Crée le:",message.guild.createAt)
+        .addField("Crée le:",message.guild.createdAt)
         .addField("Tu as rejoin le:",message.guild.joinedAt)
         .addField("Utilisateurs sur le discord:",message.guild.memberCount)
         .setColor("RANDOM")
