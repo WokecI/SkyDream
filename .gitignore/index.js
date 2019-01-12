@@ -44,6 +44,7 @@ bot.on('message', message => {
         let embed = new Discord.RichEmbed()
             .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
             .setFooter('Nous sommes désormais ' + member.guild.memberCount)
+            .SetColor('RANDOM')
         member.guild.channels.get('524172484879187968').send(embed)
         member.addRole('524171607493574656')
      
@@ -53,6 +54,7 @@ bot.on('message', message => {
         let embed = new Discord.RichEmbed()
             .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name)
             .setFooter('Nous sommes désormais ' + member.guild.memberCount)
+            .SetColor('RANDOM')
         member.guild.channels.get('524172484879187968').send(embed)
     }
 
