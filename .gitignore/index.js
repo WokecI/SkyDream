@@ -15,6 +15,7 @@ bot.on('message', message => {
         var help = new Discord.RichEmbed()
             .setTitle("__Liste des commandes disponibles:__")
             .addField("help","Affiche ce message.")
+            .addField("liens","Donne des liens utiles ^^")
             .setColor("RANDOM")
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(help);
