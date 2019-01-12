@@ -39,25 +39,7 @@ bot.on('message', message => {
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(liens);
     }
-    
-    bot.on('guildMemberAdd', member =>{
-        var embed1 = new Discord.RichEmbed()
-            .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
-            .setFooter('Nous sommes désormais ' + member.guild.memberCount)
-            .setColor('RANDOM')
-        member.guild.channels.get('524172484879187968').send(embed1)
-        member.addRole('524171607493574656')
-     
-    });
-     
-    bot.on('guildMemberRemove', member =>{
-        var embed2 = new Discord.RichEmbed()
-            .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name)
-            .setFooter('Nous sommes désormais ' + member.guild.memberCount)
-            .setColor('RANDOM')
-        member.guild.channels.get('524172484879187968').send(embed2);
-    },
-
+     /*clear*/
     bot.on("message", message => {
         if (!message.guild) return
         let args = message.content.trim().split(/ +/g)
@@ -69,4 +51,4 @@ bot.on('message', message => {
             if (isNaN(count)) return message.channel.send("Veuillez indiquer un nombre valide")
             if (count < 1 || count > 100) return message.channel.send("Veuillez indiquer un nombre entre 1 et 100")
             message.channel.bulkDelete(parseInt(count) + 1)
-        }}))})
+        }})})
