@@ -91,4 +91,36 @@ bot.on('message', message => {
             message.react("❌")
             message.react("✅")
         }).catch(function() {
-        })}})
+        });
+    }else{
+        return message.reply("Tu n'as pas la permission.")
+}},)
+
+    switch (args[0].toLowerCase()) {
+        case "roll":
+            var roll = Math.floor(Math.random() * args[1]) +1;
+            if (!roll) return message.reply("Entre un numéro")
+            message.channel.send("Je choisis le numéro " + roll + " !");
+            break;
+        case "8ball":
+        let args = message.content.split(" ").slice(1);
+        let tte = args.join(" ")
+        if (!tte) {
+            return message.reply("Merci de poser une question :8ball:")};
+
+            var replys = [
+                "Oui",
+                "Nan",
+                "Je sais pas",
+                "Peut être",
+                "Impossible",
+                "Sur et certain"
+            ];
+
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var bembed = new Discord.RichEmbed()
+            .setDescription(":8ball: 8ball")
+            .addField("Question", tte)
+            .addField("Réponse", reponse)
+            message.channel.sendEmbed(bembed)
+    }
