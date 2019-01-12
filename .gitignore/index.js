@@ -28,5 +28,6 @@ bot.on('message', message => {
             .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX)")
             .setColor("random")
             .setFooter("Comandes faites par: Skylost#5655")
+        message.channel.sendEmbed(lien)
     }
     }})
