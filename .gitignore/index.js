@@ -13,9 +13,11 @@ bot.login(process.env.TOKEN);
 bot.on('message', message => {
     if (message.content === prefix + "help"){
         var help = new Discord.RichEmbed()
-        .setTitle("__Liste des commandes disponibles:__")
-        .addField
-
+            .setTitle("__Liste des commandes disponibles:__")
+            .addField("help","Affiche ce message.")
+            .setColor("RANDOM")
+            .setFooter("Comandes faites par: Skylost#5655")
+        message.channel.sendEmbed(help);
     }
 
     if (message.content === 'salut'){
