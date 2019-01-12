@@ -40,8 +40,8 @@ bot.on('message', message => {
         message.channel.sendEmbed(liens);
     }
     
-    client.on('guildMemberAdd', member =>{
-        let embed1 = new Discord.RichEmbed()
+    bot.on('guildMemberAdd', member =>{
+        var embed1 = new Discord.RichEmbed()
             .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
             .setFooter('Nous sommes désormais ' + member.guild.memberCount)
             .setColor('RANDOM')
@@ -50,8 +50,8 @@ bot.on('message', message => {
      
     });
      
-    client.on('guildMemberRemove', member =>{
-        let embed2 = new Discord.RichEmbed()
+    bot.on('guildMemberRemove', member =>{
+        var embed2 = new Discord.RichEmbed()
             .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name)
             .setFooter('Nous sommes désormais ' + member.guild.memberCount)
             .setColor('RANDOM')
