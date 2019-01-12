@@ -10,6 +10,7 @@ bot.on('ready', function() {
 
 bot.login(process.env.TOKEN);
 
+ /*help*/
 bot.on('message', message => {
     if (message.content === prefix + "help"){
         var help = new Discord.RichEmbed()
@@ -20,6 +21,7 @@ bot.on('message', message => {
             .setFooter("Comandes faites par: Skylost#5655")
         message.channel.sendEmbed(help);
     }
+/*fin help*/
 
     if (message.content === 'salut'){
         message.channel.send("Bien le bonjour");
@@ -38,4 +40,20 @@ bot.on('message', message => {
         message.channel.sendEmbed(liens);
     }
     
-})
+    client.on('guildMemberAdd', member =>{
+        let embed = new Discord.RichEmbed()
+            .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
+            .setFooter('Nous sommes désormais ' + member.guild.memberCount)
+        member.guild.channels.get('524172484879187968').send(embed)
+        member.addRole('524171607493574656')
+     
+    });
+     
+    client.on('guildMemberRemove', member =>{
+        let embed = new Discord.RichEmbed()
+            .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name)
+            .setFooter('Nous sommes désormais ' + member.guild.memberCount)
+        member.guild.channels.get('524172484879187968').send(embed)
+    }
+
+    )})
