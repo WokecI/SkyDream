@@ -21,4 +21,12 @@ bot.on('message', message => {
 
     if (message.content === 'ping'){
         message.channel.sendMessage(":white_check_mark: pong :white_check_mark:");
+
+    if (message.content === prefix + "liens"){
+        var lien = new Discord.RichEmbed()
+            .setTitle("Les liens utiles:")
+            .addField("Le Discord:","[Clique ici](https://discord.gg/A5dd5ZX)")
+            .setColor("random")
+            .setFooter("Comandes faites par: Skylost#5655")
+    }
     }})
