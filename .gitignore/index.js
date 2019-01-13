@@ -92,4 +92,14 @@ bot.on('message', message => {
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos)
     }
+    if (message.content === prefix + 'botinfos'){
+        var botIvon = bot.user.displayAvatarURL
+        var botinfo = new Discord.RichEmbed()
+            .setTitle("Informations sur le bot:")
+            .setThumbnail(botIvon)
+            .addField("Nom du bot:", bot.user.username)
+            .addField("Crée le:", bot.user.createdAt)
+            .addField("Créateur:","Skylost#5655")
+        message.channel.sendEmbed(botinfo)
+    }
 })
