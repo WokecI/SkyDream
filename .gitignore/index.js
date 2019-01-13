@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 var prefix = ('.')
 
 bot.on('ready', function() {
-    bot.user.setGame(".help | 1 serveurs");
+    bot.user.setGame(".help | 2 serveurs");
     console.log("Conecté");
 });
 
