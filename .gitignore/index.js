@@ -79,7 +79,7 @@ bot.on('message', message => {
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(discordi);
     }
-    if (message.content === prefix + "joueursinfos"){
+    if (message.content === prefix + "joueurinfos"){
         console.log('jinfos ok')
         var infos = new Discord.RichEmbed()
             .setTitle("__Informations du joeurs__:")
