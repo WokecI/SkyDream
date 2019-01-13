@@ -82,12 +82,13 @@ bot.on('message', message => {
     }
     if (message.content === prefix + "joueurinfos"){
         console.log('jinfos ok')
+        var iconJ = message.author.avatarURL
         var infos = new Discord.RichEmbed()
             .setTitle("__Informations du joeurs__:")
+            .setThumbnail(iconJ)
             .addField("Nom du joueur:",message.author.username)
             .addField("ID:",message.author.id)
             .addField("Compte crée le:",message.author.createdAt)
-            .addField("Photo de profile:",message.author.avatarURL)
             .setColor("RANDOM")
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos)
@@ -100,6 +101,39 @@ bot.on('message', message => {
             .addField("Nom du bot:", bot.user.username)
             .addField("Crée le:", bot.user.createdAt)
             .addField("Créateur:","Skylost#5655")
-        message.channel.sendEmbed(botinfo)
+        message.channel.sendEmbed(botinf)
     }
-})
+    if (message.content === prefix + "report") {
+        console.log('reports')
+        var reportUser = message.guild.member(
+            message.mentions.users.first() || message.guild.members.get(args[0])
+        );
+        if (!reportUser) {
+            return message.channel.send("L'utilisateur n'éxiste pas !")
+        };
+        var reportReason = arg.join('').slice(22);
+
+        var reportEmbed = new Discord.RichEmbed()
+            .setDescription('Reports:')
+            .setColor('RANDOM')
+            .addField(
+                'Utilisateur reporté',
+                `${reportUser} (ID: ${reportUser})`
+            )
+            .addField(
+                'Utilisateur ayant reporté',
+                `${message.author} (ID: ${message.author.id})`
+            )
+            .addField('Canal', message.channel)
+            .addField('Raison', reportReason);
+
+        var reportChannel = message.guild.channels.find(`name`, 'reports');
+        if (!reportChannel) {
+            return message.channel.send(
+                "Canal 'reports' introuvable. Veuillez créer ce canal !"
+            );
+        }
+
+        message.delete();
+        reportedChannel.send(reportEmbed);
+}})
