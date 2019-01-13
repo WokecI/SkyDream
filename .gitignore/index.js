@@ -67,14 +67,15 @@ bot.on('message', message => {
          message.channel.bulkDelete(parseInt(count) + 1);
     }
     if (message.content === prefix + "discordinfos"){
-        console.log('dinfos ok')
+        var servIcon = message.guild.iconURL
         var discordi = new Discord.RichEmbed()
             .setTitle("__Informations du discord__:")
+            .setThumbnail(servIcon)
             .addField("Nom du discord:", message.guild.name)
             .addField("Propriétaire du serveur:", message.guild.owner)
             .addField("Crée le:",message.guild.createdAt)
+            .addField('Tu a rejoint le:', message.member.joinedAt)
             .addField("Utilisateurs sur le discord:",message.guild.memberCount)
-            .addField("L'avatar du serveur:",message.guild.iconURL)
             .setColor("RANDOM")
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(discordi);
