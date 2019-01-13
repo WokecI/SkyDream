@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 var prefix = ('.')
 
 bot.on('ready', function() {
-    bot.user.setGame(".help | 2 serveurs");
+    bot.user.setGame(".help | 1 serveurs");
     console.log("Conecté");
 });
 
@@ -86,7 +86,7 @@ bot.on('message', message => {
             .addField("Nom du joueur:",message.author.username)
             .addField("ID:",message.author.id)
             .addField("Compte crée le:",message.author.createdAt)
-            .addField("Photo de profile:",message.author.iconURL)
+            .addField("Photo de profile:",message.author.avatarURL)
             .setColor("RANDOM")
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos)
