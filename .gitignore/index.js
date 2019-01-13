@@ -8,7 +8,7 @@ bot.on('ready', function() {
     console.log("Conecté");
 });
 
-bot.login(process.env.TOKEN)
+bot.login("NTMzNjM2ODczMTk3NzE1NDU2.DxyK8Q.G-jEsG2xPDBDKNS3tXialQKzMOE");
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
@@ -35,7 +35,10 @@ bot.on('message', message => {
     }
 
     if (message.content === 'ping'){
-        message.channel.sendMessage(":white_check_mark: pong :white_check_mark:");
+        var pinge = new Discord.RichEmbed()
+        .setTitle("🏓Pong🏓")
+        .setColor("RANDOM")
+        message.channel.sendEmbed(pinge);
     }
 
     if (message.content === prefix + "liens"){
@@ -68,7 +71,6 @@ bot.on('message', message => {
         .addField("Nom du discord:", message.guild.name)
         .addField("Propriétaire du serveur:", message.guild.owner)
         .addField("Crée le:",message.guild.createdAt)
-        .addField("Tu as rejoin le:",message.guild.joinedAt)
         .addField("Utilisateurs sur le discord:",message.guild.memberCount)
         .addField("L'avatar du serveur:", message.guild.iconURL)
         .setColor("RANDOM")
