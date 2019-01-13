@@ -86,7 +86,7 @@ bot.on('message', message => {
             .addField("Nom du joueur:",message.author.username)
             .addField("ID:",message.author.id)
             .addField("Compte crée le:",message.author.createdAt)
-            .addField("Photo de profile:",meggage.author.iconURL)
+            .addField("Photo de profile:",message.author.iconURL)
             .setColor("RANDOM")
             .setFooter("Commandes faites par: Skylost#5655")
         message.channel.sendEmbed(infos)
