@@ -98,6 +98,7 @@ bot.on('message', message => {
         var botinfo = new Discord.RichEmbed()
             .setTitle("Informations sur le bot:")
             .setThumbnail(botIvon)
+            .setColor('RANDOM')
             .addField("Nom du bot:", bot.user.username)
             .addField("Crée le:", bot.user.createdAt)
             .addField("Créateur:","Skylost#5655")
