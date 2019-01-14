@@ -101,5 +101,5 @@ bot.on('message', message => {
             .addField("Nom du bot:", bot.user.username)
             .addField("Crée le:", bot.user.createdAt)
             .addField("Créateur:","Skylost#5655")
-        message.channel.sendEmbed(botinf)
+        message.channel.sendEmbed(botinfo)
      }})
