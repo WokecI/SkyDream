@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 var prefix = ('.')
 
 bot.on('ready', function() {
-    bot.user.setGame(".help | 2 serveurs");
+    bot.user.setGame(".help |");
     console.log("Conecté");
 });
 
@@ -14,7 +14,7 @@ bot.on('message', message => {
     if (message.content === prefix + "help"){
         console.log('help ok')
         var help = new Discord.RichEmbed()
-            .setTitle("__Liste des commandes disponibles:__")
+            .setTitle("Liste des commandes disponibles:")
             .addField("help","Affiche ce message.")
             .addField("liens","Donne des liens utiles ^^.")
             .addField("discordinfos","Donne les informations du serveur.")
@@ -28,7 +28,7 @@ bot.on('message', message => {
     if (message.content === prefix + "helpmod"){
         console.log('helpmod ok')
         var helpm = new Discord.RichEmbed()
-            .setTitle("__Liste des commandes de modérations:__")
+            .setTitle("Liste des commandes de modérations:")
             .addField("helpmod","Affiche ce message.")
             .addField("clear [nombre entre 1 et 100]","fait le ménage.")
             .setColor("RANDOM")
@@ -47,7 +47,7 @@ bot.on('message', message => {
     if (message.content === prefix + "liens"){
         console.log('liens ok')
         var liens = new Discord.RichEmbed()
-            .setTitle("__Les liens utiles:__")
+            .setTitle("Les liens utiles:")
             .addField("Le Discord officiel:","[Clique ici](https://discord.gg/FQE9x8R) pour rejoindre le discord officiel de SkyDream !", true)
             .addField("La cousine Plisk:","[Clique ici](https://discord.gg/SthKtBJ) pour rejoindre le serveur de notre cousine Plisk !", true)
             .setColor("RANDOM")
@@ -69,7 +69,7 @@ bot.on('message', message => {
     if (message.content === prefix + "discordinfos"){
         var servIcon = message.guild.iconURL
         var discordi = new Discord.RichEmbed()
-            .setTitle("__Informations du discord__:")
+            .setTitle("Informations du discord:")
             .setThumbnail(servIcon)
             .addField("Nom du discord:", message.guild.name)
             .addField("Propriétaire du serveur:", message.guild.owner)
@@ -84,7 +84,7 @@ bot.on('message', message => {
         console.log('jinfos ok')
         var iconJ = message.author.avatarURL
         var infos = new Discord.RichEmbed()
-            .setTitle("__Informations du joeurs__:")
+            .setTitle("Informations du joeurs:")
             .setThumbnail(iconJ)
             .addField("Nom du joueur:",message.author.username)
             .addField("ID:",message.author.id)
@@ -102,38 +102,4 @@ bot.on('message', message => {
             .addField("Crée le:", bot.user.createdAt)
             .addField("Créateur:","Skylost#5655")
         message.channel.sendEmbed(botinf)
-    }
-    if (message.content === prefix + "report") {
-        console.log('reports')
-        var reportUser = message.guild.member(
-            message.mentions.users.first() || message.guild.members.get(args[0])
-        );
-        if (!reportUser) {
-            return message.channel.send("L'utilisateur n'éxiste pas !")
-        };
-        var reportReason = arg.join('').slice(22);
-
-        var reportEmbed = new Discord.RichEmbed()
-            .setDescription('Reports:')
-            .setColor('RANDOM')
-            .addField(
-                'Utilisateur reporté',
-                `${reportUser} (ID: ${reportUser})`
-            )
-            .addField(
-                'Utilisateur ayant reporté',
-                `${message.author} (ID: ${message.author.id})`
-            )
-            .addField('Canal', message.channel)
-            .addField('Raison', reportReason);
-
-        var reportChannel = message.guild.channels.find(`name`, 'reports');
-        if (!reportChannel) {
-            return message.channel.send(
-                "Canal 'reports' introuvable. Veuillez créer ce canal !"
-            );
-        }
-
-        message.delete();
-        reportedChannel.send(reportEmbed);
-}})
+     }})
