@@ -199,7 +199,7 @@ bot.on('message', async message => {
         let liens = new Discord.RichEmbed()
         .setTitle('Les liens:')
         .addField('Le discord officiel:', '[Clique ici](https://discord.gg/FQE9x8R) pour rejoindre le discord de SkyDream !')
-        .addField("Lien pour m'inviter:", "[Clique ici] pour m'inviter sur ton serveur !")
+        .addField("Lien pour m'inviter:", "[Clique ici](https://discordapp.com/oauth2/authorize?client_id=533636873197715456&scope=bot&permissions=8) pour m'inviter sur ton serveur !")
         .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
         message.channel.send(liens);
     }
