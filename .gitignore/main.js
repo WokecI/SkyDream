@@ -27,7 +27,7 @@ bot.on('message', async message => {
             .addField('Nombre total de membres:', message.guild.memberCount)
             .addField('Créé le:', message.guild.createdAt)
             .addField('Vous avez rejoint le:', message.member.joinedAt)
-            .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         return message.channel.send(servEmbed);
    }
 
@@ -41,7 +41,7 @@ bot.on('message', async message => {
             .addField('Nom du bot:', bot.user.username)
             .addField('Créé le:', bot.user.createdAt)
             .addField('Créé par:','Skylost#5655')
-            .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
 
         return message.channel.send(embed);
     };
@@ -55,7 +55,8 @@ bot.on('message', async message => {
         .addField(`${prefix}infoserv`, 'Envois les informations sur du serveur.')
         .addField(`${prefix}infobot`, 'Envois les informations sur le bot.')
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
-        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+        .addField(`${prefix}liens`, "Pour avoir les liens utiles.")
+        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         message.channel.send(help1);
     }
     //helpmod
@@ -65,7 +66,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField(`${prefix}report <mention> <raison>`, 'Report un utilisateur.')
         .addField(`${prefix}kick <mention> <raison>`, 'Kick un utilisateur.')
-        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         message.channel.send(help2);
     }
 
@@ -88,7 +89,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', reportedReason)
-        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag)
+        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         reportedUser.createDM().then(channel => {
         channel.send(reportmp);
         });
@@ -106,7 +107,7 @@ bot.on('message', async message => {
             )
         .addField('Canal:', message.channel)
         .addField('Raison:', reportedReason)
-        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
 
         let reportedChannel = message.guild.channels.find(x => x.name === "logs");
         if (!reportedChannel) {
@@ -145,7 +146,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', kickReason)
-        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag)
+        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         kickUser.createDM().then(channel => {
         channel.send(kickmp);
         });
@@ -163,7 +164,7 @@ bot.on('message', async message => {
             )
         .addField('Canal:', message.channel)
         .addField('Raison:', kickReason)
-        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
 
         let kickChannel = message.guild.channels.find(x => x.name === "logs");
         if (!kickChannel) {
@@ -190,7 +191,7 @@ bot.on('message', async message => {
     .setColor("RANDOM")
     .addField("Question:", question)
     .addField("Réponse:", replies[res])
-    .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+    .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
     message.channel.send(Ball8);
     }
 
@@ -200,7 +201,7 @@ bot.on('message', async message => {
         .setTitle('Les liens:')
         .addField('Le discord officiel:', '[Clique ici](https://discord.gg/FQE9x8R) pour rejoindre le discord de SkyDream !')
         .addField("Lien pour m'inviter:", "[Clique ici](https://discordapp.com/oauth2/authorize?client_id=533636873197715456&scope=bot&permissions=8) pour m'inviter sur ton serveur !")
-        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         message.channel.send(liens);
     }
 });
