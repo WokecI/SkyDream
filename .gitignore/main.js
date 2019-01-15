@@ -193,6 +193,16 @@ bot.on('message', async message => {
     .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
     message.channel.send(Ball8);
     }
+
+    //liens
+    if (command === `${prefix}liens`) {
+        let liens = new Discord.RichEmbed()
+        .setTitle('Les liens:')
+        .addField('Le discord officiel:', '[Clique ici](https://discord.gg/FQE9x8R) pour rejoindre le discord de SkyDream !')
+        .addField("Lien pour m'inviter:", "[Clique ici] pour m'inviter sur ton serveur !")
+        .setFooter("Commandes par Skylost#5655 |" + " " + message.author.tag);
+        message.channel.send(liens);
+    }
 });
 
 bot.login(process.env.TOKEN);
