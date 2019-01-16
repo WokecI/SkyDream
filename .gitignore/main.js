@@ -4,7 +4,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
-    bot.user.setActivity('.help | 3 serveurs');
+    bot.user.setActivity('.help');
 });
 
 bot.on('message', async message => {
