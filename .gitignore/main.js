@@ -97,6 +97,7 @@ bot.on('message', async message => {
         .addField(`${prefix}ban <mention> <raison>`, 'ban un utilisateur.')
         .addField(`${prefix}clear <nombre>`, 'Fait le ménage.')
         .addField(`${prefix}sondage <question>`, "Crée un sondage pour avoir l'avis des autres.")
+        .addField(`${prefix}autorole <nom du role>`, 'met le role designer au personnes qui arrivent sur votre serveur.')
         .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         message.channel.send(help2);
     }
