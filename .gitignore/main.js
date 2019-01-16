@@ -385,6 +385,19 @@ bot.on('message', async message => {
                 await Mes2.react('❌')
             })
     }
+
+    //autorole
+    if (command === `${prefix}autorole`) {
+        if (!args[0]) return message.channel.send(`Erreur: ${prefix}autorole <nom du role>`);
+        let autorole = args.join(' ')
+        if (!message.member.hasPermission("MANAGE_ROLES")) {
+            return message.channel.send(":x: Vous n'avez pas la permission pour autorole ! :x:")
+        }
+
+    bot.on('guildMemberAdd', member => {
+        var role = member.guild.roles.find('name', autorole);
+        member.addRole(role)
+    })};
 });
 
 bot.login(process.env.TOKEN);
