@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const ytdl = require('ytdl-core')
 
 const bot = new Discord.Client({disableEveryone: true});
 
@@ -26,10 +27,10 @@ bot.on('message', async message => {
             .setTitle('Information du serveur:')
             .setColor('RANDOM')
             .setThumbnail(servIcon)
-            .addField('Nom du serveur:', message.guild.name)
-            .addField('Nombre total de membres:', message.guild.memberCount)
-            .addField('Créé le:', servcreate[2] + '/' + servcreate[1] + '/' + servcreate[3] + '/' + servcreate[4])
-            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+            .addField('Nom du serveur:', message.guild.name, true)
+            .addField('Nombre total de membres:', message.guild.memberCount, true)
+            .addField('Créé le:', servcreate[2] + '/' + servcreate[1] + '/' + servcreate[3] + '/' + servcreate[4], true)
+            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag, true);
         return message.channel.send(servEmbed);
    }
 
@@ -43,10 +44,10 @@ bot.on('message', async message => {
             .setTitle('Informations sur le bot:')
             .setColor('RANDOM')
             .setThumbnail(botIcon)
-            .addField('Nom du bot:', bot.user.username)
-            .addField('Créé le:', botcreate[2] + '/' + botcreate[1] + '/' + botcreate[3] + '/' + botcreate[4])
-            .addField('Créé par:','Skylost#5655')
-            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+            .addField('Nom du bot:', bot.user.username, true)
+            .addField('Créé le:', botcreate[2] + '/' + botcreate[1] + '/' + botcreate[3] + '/' + botcreate[4], true)
+            .addField('Créé par:','Skylost#5655', true)
+            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag, true);
 
         return message.channel.send(embed);
     }
@@ -62,10 +63,10 @@ bot.on('message', async message => {
             .setTitle('Informations sur le joueur:')
             .setColor('RANDOM')
             .setThumbnail(jicon)
-            .addField('Pseudo:', message.author.tag)
-            .addField('ID:', message.author.id)
-            .addField('Compte créé le:', usercreate[2] + '/' + usercreate[1] + '/' + usercreate[3] + '/' + usercreate[4])
-            .addField('Tu a rejoint le:', userjoin[2] + '/' + userjoin[1] + '/' + userjoin[3] + '/' + userjoin[4])
+            .addField('Pseudo:', message.author.tag, true)
+            .addField('ID:', message.author.id, true)
+            .addField('Compte créé le:', usercreate[2] + '/' + usercreate[1] + '/' + usercreate[3] + '/' + usercreate[4], true)
+            .addField('Tu a rejoint le:', userjoin[2] + '/' + userjoin[1] + '/' + userjoin[3] + '/' + userjoin[4],true)
             .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
 
         return message.channel.send(jembed);
@@ -83,6 +84,8 @@ bot.on('message', async message => {
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
+        .addField(`${prefix}play <lien>`, 'SkyDream va jouer ta musique.')
+        .addField(`${prefix}stop <message>`, 'SkyDream va quitter le vocal.')
         .addField(`${prefix}liens`, "Pour avoir les liens utiles.")
         .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         message.channel.send(help1);
@@ -386,6 +389,38 @@ bot.on('message', async message => {
                 await Mes2.react('❌')
             })
     }
+
+    //play
+    if (command === `${prefix}play`) {
+        if (!message.member.voiceChannel)
+        return message.channel.send('Conectez vous à un salon vocal !');
+        if (message.guild.me.voiceChannel)
+        return message.channel.send('Le bot est deja connecté à un salon !');
+        if (!args[0])
+        return message.channel.send('Merci de mettre un lien youtube !');
+
+        const validate = await ytdl.validateURL(args[0]);
+        if (!validate) return message.channel.send("Désoler, l'URL n'est pas valide !");
+
+    const info = await ytdl.getInfo(args[0]);
+    const connection = await message.member.voiceChannel.join();
+    const dispatcher = await connection.playStream(
+        ytdl(args[0], { filter: 'audioonly' })
+    );
+    message.channel.send(`Musique ajoutée: ${info.title}`);
+    };
+
+    //stop
+    if (command === `${prefix}stop`) {
+        if (!message.member.voiceChannel)
+        return message.channel.send('Conectez vous à un salon vocal !');
+        if (!message.guild.me.voiceChannel)
+        return message.channel.send("Le bot n'est pas conecté !");
+        if (message.guild.me.voiceChannelID !== message.member.voiceChannelID)
+        return message.channel.send("vous n'êtes pas dans le même salon !");
+        message.guild.leave.voiceChannel.leave();
+        message.delete();
+    };
 
     //autorole
     if (command === `${prefix}autorole`) {
