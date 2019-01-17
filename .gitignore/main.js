@@ -10,9 +10,11 @@ bot.on("ready", async () => {
 
 bot.on("guildCreate", guild => {
     bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+    });
     
 bot.on("guildDelete", guild => {
     bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+    });
 
 bot.on('message', async message => {
     if (message.author.bot) return;
