@@ -16,7 +16,7 @@ bot.on("guildDelete", guild => {
     bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
     });
 
-bot.on("userJoined", user => {
+bot.on("userJoin", user => {
     bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
     });
 
