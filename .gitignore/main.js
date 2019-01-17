@@ -5,8 +5,13 @@ const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
-    bot.user.setActivity('.help');
+    bot.user.setActivity(`.help | ${bot.guilds.size} serveurs`);
 });
+
+bot.on("guildCreate", guild => {
+    bot.user.setActivity(`.help | ${bot.guilds.size} serveurs`);
+bot.on("guildDelete", guild => {
+    bot.user.setActivity(`.help | ${bot.guilds.size} serveurs`);
 
 bot.on('message', async message => {
     if (message.author.bot) return;
