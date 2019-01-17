@@ -84,8 +84,8 @@ bot.on('message', async message => {
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
-        .addField(`${prefix}play <lien>`, 'SkyDream va jouer ta musique.')
-        .addField(`${prefix}stop <message>`, 'SkyDream va quitter le vocal.')
+
+        
         .addField(`${prefix}liens`, "Pour avoir les liens utiles.")
         .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
         message.channel.send(help1);
