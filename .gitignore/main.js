@@ -16,6 +16,10 @@ bot.on("guildDelete", guild => {
     bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
     });
 
+bot.on("userCreate", user => {
+    bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
+    });
+
 bot.on('message', async message => {
     if (message.author.bot) return;
     if (message.channel.type === 'dm') return
