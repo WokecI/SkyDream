@@ -410,12 +410,13 @@ bot.on('message', async message => {
     message.channel.send(`Musique ajoutée: ${info.title}`);
     };
 
-    //stop
-    if (comman
+   
+   
+      
         
-        d === `${prefix}stop`) {
-        if (!message.member.voiceChannel)
-        return message.channel.send('Conectez vous à un salon vocal !');
+    
+       
+
        
 
        
