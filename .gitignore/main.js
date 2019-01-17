@@ -411,16 +411,21 @@ bot.on('message', async message => {
     };
 
     //stop
-    if (command === `${prefix}stop`) {
+    if (comman
+        
+        d === `${prefix}stop`) {
         if (!message.member.voiceChannel)
         return message.channel.send('Conectez vous à un salon vocal !');
-        if (!message.guild.me.voiceChannel)
-        return message.channel.send("Le bot n'est pas conecté !");
-        if (message.guild.me.voiceChannelID !== message.member.voiceChannelID)
-        return message.channel.send("vous n'êtes pas dans le même salon !");
-        message.guild.leave.voiceChannel.leave();
-        message.delete();
-    };
+       
+
+       
+        
+ 
+
+       
+        
+     
+
 
     //autorole
     if (command === `${prefix}autorole`) {
