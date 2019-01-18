@@ -16,11 +16,11 @@ bot.on("guildDelete", guild => {
     bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
     });
 
-bot.on("guildMemberAdd", user => {
+bot.on("guildMemberAdd", guildMemberCount => {
     bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
     });
 
-bot.on.("guildMemberRemove", user => {
+bot.on.("guildMemberRemove", guildMemberCount => {
     bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
     });
 
