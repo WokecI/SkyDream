@@ -5,27 +5,25 @@ const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
-    bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
+    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
 });
 
 bot.on("guildCreate", guild => {
-    bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
+    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
     });
     
 bot.on("guildDelete", guild => {
-    bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
+    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
     });
 
+bot.on("guildMemberAdd", user => {
+    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+    });
 
+bot.on("guildMemberRemove", user => {
+    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+    });
   
-
-    
-
-
-    
-                   
-    
-
 bot.on('message', async message => {
     if (message.author.bot) return;
     if (message.channel.type === 'dm') return
@@ -45,10 +43,10 @@ bot.on('message', async message => {
             .setTitle('Information du serveur:')
             .setColor('RANDOM')
             .setThumbnail(servIcon)
-            .addField('Nom du serveur:', message.guild.name, true)
-            .addField('Nombre total de membres:', message.guild.memberCount, true)
-            .addField('Créé le:', servcreate[2] + '/' + servcreate[1] + '/' + servcreate[3] + '/' + servcreate[4], true)
-            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag, true);
+            .addField('Nom du serveur:', message.guild.name,)
+            .addField('Nombre total de membres:', message.guild.memberCount,)
+            .addField('Créé le:', servcreate[2] + '/' + servcreate[1] + '/' + servcreate[3] + '/' + servcreate[4],)
+            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag,);
         return message.channel.send(servEmbed);
    }
 
@@ -62,10 +60,13 @@ bot.on('message', async message => {
             .setTitle('Informations sur le bot:')
             .setColor('RANDOM')
             .setThumbnail(botIcon)
-            .addField('Nom du bot:', bot.user.username, true)
-            .addField('Créé le:', botcreate[2] + '/' + botcreate[1] + '/' + botcreate[3] + '/' + botcreate[4], true)
-            .addField('Créé par:','Skylost#5655', true)
-            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag, true);
+            .addField('Nom du bot:', bot.user.username,)
+            .addField('Créé le:', botcreate[2] + '/' + botcreate[1] + '/' + botcreate[3] + '/' + botcreate[4],)
+            .addField('Créé par:','Skylost#5655')
+            .addField('Serveurs en tout:', bot.guilds.size)
+            .addField('Utilisateurs en tout:', bot.users.size)
+            .addField("API:", `${Math.round(bot.ping)}ms`)
+            .setFooter("Exécutée par:" + " " + message.author.tag);
 
         return message.channel.send(embed);
     }
@@ -85,7 +86,7 @@ bot.on('message', async message => {
             .addField('ID:', message.author.id, true)
             .addField('Compte créé le:', usercreate[2] + '/' + usercreate[1] + '/' + usercreate[3] + '/' + usercreate[4], true)
             .addField('Tu a rejoint le:', userjoin[2] + '/' + userjoin[1] + '/' + userjoin[3] + '/' + userjoin[4],true)
-            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+            .setFooter("Exécutée par:" + " " + message.author.tag);
 
         return message.channel.send(jembed);
     }
@@ -102,10 +103,8 @@ bot.on('message', async message => {
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
-
-        
         .addField(`${prefix}liens`, "Pour avoir les liens utiles.")
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
     }
     //helpmod
@@ -119,7 +118,7 @@ bot.on('message', async message => {
         .addField(`${prefix}clear <nombre>`, 'Fait le ménage.')
         .addField(`${prefix}sondage <question>`, "Crée un sondage pour avoir l'avis des autres.")
        
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help2);
     }
 
@@ -142,7 +141,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', reportedReason)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         reportedUser.createDM().then(channel => {
         channel.send(reportmp);
         });
@@ -160,7 +159,7 @@ bot.on('message', async message => {
             )
         .addField('Canal:', message.channel)
         .addField('Raison:', reportedReason)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
 
         let reportedChannel = message.guild.channels.find(x => x.name === "logs");
         if (!reportedChannel) {
@@ -199,7 +198,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', kickReason)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         kickUser.createDM().then(channel => {
         channel.send(kickmp);
         });
@@ -217,7 +216,7 @@ bot.on('message', async message => {
             )
         .addField('Canal:', message.channel)
         .addField('Raison:', kickReason)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
 
         let kickChannel = message.guild.channels.find(x => x.name === "logs");
         if (!kickChannel) {
@@ -256,7 +255,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', banReason)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         banUser.createDM().then(channel => {
         channel.send(banmp);
         });
@@ -274,7 +273,7 @@ bot.on('message', async message => {
             )
         .addField('Canal:', message.channel)
         .addField('Raison:', banReason)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
 
         let banChannel = message.guild.channels.find(x => x.name === "logs");
         if (!banChannel) {
@@ -300,7 +299,7 @@ bot.on('message', async message => {
     .setColor("RANDOM")
     .addField("Question:", question)
     .addField("Réponse:", replies[res])
-    .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+    .setFooter("Exécutée par:" + " " + message.author.tag);
     message.channel.send(Ball8);
     }
 
@@ -310,7 +309,7 @@ bot.on('message', async message => {
         .setTitle('Les liens:')
         .addField('Le discord officiel:', '>[Clique ici](https://discord.gg/FQE9x8R)< pour rejoindre le discord de SkyDream !')
         .addField("Lien pour m'inviter:", ">[Clique ici](https://discordapp.com/oauth2/authorize?client_id=533636873197715456&scope=bot&permissions=8)< pour m'inviter sur ton serveur !")
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(liens);
     }
     
@@ -335,7 +334,7 @@ bot.on('message', async message => {
             .addField('Messages suprimer:', `${args[0]}`)
             .addField('Dans le salon:', message.channel)
             .addField('Par:', message.author.tag)
-            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+            .setFooter("Exécutée par:" + " " + message.author.tag);
             clearChannel.send(ménageEmbed);
  
         message.channel.bulkDelete(args[0]).then(() => {
@@ -360,7 +359,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Message:', messagetobot)
         .addField('De:', message.author.tag)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag)
+        .setFooter("Exécutée par:" + " " + message.author.tag)
         sayChannel.send(messagetobotEmbed);
     message.channel.send(messagetobot);
     message.delete().catch();
@@ -379,7 +378,7 @@ bot.on('message', async message => {
     .setTitle(`Sondage de ${message.author.username}:`)
     .setColor('RANDOM')
     .addField('Question:', args.join(' '))
-    .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+    .setFooter("Exécutée par:" + " " + message.author.tag);
 
     let Mes = await message.channel.send(sondagembed);
     await Mes.react('✅')
@@ -397,7 +396,7 @@ bot.on('message', async message => {
         .addField('Venant de:', message.author.tag)
         .addField('Depuis:', message.guild.name + ' | ' + message.channel.name)
         .addField('Proposition:', messagesug)
-        .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag);
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         message.delete().catch();
 
         var Mes2 = await bot.channels.get(`533926069045297167`)
@@ -406,65 +405,7 @@ bot.on('message', async message => {
                 await Mes2.react('🤔')
                 await Mes2.react('❌')
             })
-    }
-
-   
-    
-        
-       
-         
-      
-    
-    
-        
-
-      
-        
-
-    
-   
- 
-    
-       
-        
-     
-    
-        
-        
-     
-
-    
-
-   
-   
-      
-        
-    
-       
-
-       
-
-       
-        
- 
-
-       
-        
-     
-
-
-    //autorole
-    if (command === `${prefix}autorole`) {
-        if (!args[0]) return message.channel.send(`Erreur: ${prefix}autorole <nom du role>`);
-        let autorole = args.join(' ')
-        if (!message.member.hasPermission("MANAGE_ROLES")) {
-            return message.channel.send(":x: Vous n'avez pas la permission pour autorole ! :x:")
-        }
-
-    bot.on('guildMemberAdd', member => {
-        var role = member.guild.roles.find('name', autorole);
-        member.addRole(role)
-    })};
+    }               
 });
 
 bot.login(process.env.TOKEN);
