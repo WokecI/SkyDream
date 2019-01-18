@@ -46,7 +46,7 @@ bot.on('message', async message => {
             .addField('Nom du serveur:', message.guild.name,)
             .addField('Nombre total de membres:', message.guild.memberCount,)
             .addField('Créé le:', servcreate[2] + '/' + servcreate[1] + '/' + servcreate[3] + '/' + servcreate[4],)
-            .setFooter("Commandes par Skylost#5655 | Executer par" + " " + message.author.tag,);
+            .setFooter("Exécutée par:" + " " + message.author.tag);
         return message.channel.send(servEmbed);
    }
 
@@ -408,4 +408,4 @@ bot.on('message', async message => {
     }               
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTMzNjM2ODczMTk3NzE1NDU2.DyM8XQ.1cdXH1TeNVQbpVYW76g_vN7E8xU");
