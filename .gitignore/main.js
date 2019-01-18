@@ -16,13 +16,15 @@ bot.on("guildDelete", guild => {
     bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
     });
 
-bot.on("guildMemberAdd", guild => {
-    bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
-    });
 
-bot.on.("guildMemberRemove", guild => {
-    bot.user.setActivity(`.help|${bot.guilds.size} serveurs|${bot.users.size} users`);
-    });
+  
+
+    
+
+
+    
+                   
+    
 
 bot.on('message', async message => {
     if (message.author.bot) return;
