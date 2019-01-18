@@ -291,12 +291,12 @@ bot.on('message', async message => {
     if (command === `${prefix}8ball`) {
     if (!args[1]) return message.reply("Entrez une question !");
 
-    let replies = ["Essaye plus tard.", "Essaye encore.", "Pas d'avis.", "C'est ton destin.", "Le sort en est jeté.", "Une cgance sur deux.", "D'après moi oui.", "C'est certain.", "Oui absolument.", "Repose ta question.", "Tu peut compter dessus.", "Sans aucun doute.", "Très probable.", "Oui.", "C'est bien parti.", "C'est non.", "Peu probable.", "Faut pas rêver.", "N'y compte pas.", "Impossible."];
+    let replies = ["Essaye plus tard.", "Peut être.", "Pas d'avis.", "C'est ton destin.", "Le sort en est jeté.", "Une chance sur deux.", "D'après moi oui.", "C'est certain.", "Oui absolument.", "Repose ta question.", "Tu peut compter dessus.", "Sans aucun doute.", "Très probable.", "Oui.", "C'est bien parti.", "C'est non.", "Peu probable.", "Faut pas rêver.", "N'y compte pas.", "Impossible.", "Même pas en rêve.", "Bien sur.", "Sûrrement.", "Tout à fait."];
     let question = args.slice(0).join(" ");
     let res = Math.floor((Math.random() * replies.length));
 
     let Ball8 = new Discord.RichEmbed()
-    .setTitle("🎱 8Ball 🎱")
+    .setTitle("?? 8Ball ??")
     .setColor("RANDOM")
     .addField("Question:", question)
     .addField("Réponse:", replies[res])
@@ -339,7 +339,7 @@ bot.on('message', async message => {
  
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel
-            .send('✅')
+            .send('?')
             .then(msg => msg.delete(3000));
         });
     }
@@ -358,7 +358,6 @@ bot.on('message', async message => {
         .setTitle('Say:')
         .setColor('RANDOM')
         .addField('Message:', messagetobot)
-        .addField('De:', message.author.tag)
         .setFooter("Exécutée par:" + " " + message.author.tag)
         sayChannel.send(messagetobotEmbed);
     message.channel.send(messagetobot);
@@ -381,8 +380,8 @@ bot.on('message', async message => {
     .setFooter("Exécutée par:" + " " + message.author.tag);
 
     let Mes = await message.channel.send(sondagembed);
-    await Mes.react('✅')
-    await Mes.react('❌')
+    await Mes.react('?')
+    await Mes.react('?')
     }
 
     //suggestion
@@ -401,10 +400,10 @@ bot.on('message', async message => {
 
         var Mes2 = await bot.channels.get(`533926069045297167`)
             Mes2.send(sugembed).then(async function (Mes2) {
-                await Mes2.react('✅')
-                await Mes2.react('🤔')
-                await Mes2.react('❌')
-            })
+                await Mes2.react('?')
+                await Mes2.react('??')
+                await Mes2.react('?')
+            });
     }               
 });
 
