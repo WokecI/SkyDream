@@ -66,6 +66,7 @@ bot.on('message', async message => {
             .addField('Serveurs en tout:', bot.guilds.size)
             .addField('Utilisateurs en tout:', bot.users.size)
             .addField("API:", `${Math.round(bot.ping)}ms`)
+            .addField('Le discord officiel:', '>[Clique ici](https://discord.gg/FQE9x8R)< pour rejoindre le discord de SkyDream !')
             .setFooter("Exécutée par:" + " " + message.author.tag);
 
         return message.channel.send(embed);
@@ -103,7 +104,7 @@ bot.on('message', async message => {
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
-        .addField(`${prefix}liens`, "Pour avoir les liens utiles.")
+        .addField(`${prefix}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
     }
@@ -303,11 +304,10 @@ bot.on('message', async message => {
     message.channel.send(Ball8);
     }
 
-    //liens
-    if (command === `${prefix}liens`) {
+    //invite
+    if (command === `${prefix}invite`) {
         let liens = new Discord.RichEmbed()
-        .setTitle('Les liens:')
-        .addField('Le discord officiel:', '>[Clique ici](https://discord.gg/FQE9x8R)< pour rejoindre le discord de SkyDream !')
+        .setTitle("L'invitation:")
         .addField("Lien pour m'inviter:", ">[Clique ici](https://discordapp.com/oauth2/authorize?client_id=533636873197715456&scope=bot&permissions=8)< pour m'inviter sur ton serveur !")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(liens);
