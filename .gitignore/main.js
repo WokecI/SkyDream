@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client({disableEveryone: true});
 
+const math = require("math-expression-evaluator"); 
+
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
     bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
@@ -410,8 +412,6 @@ bot.on('message', async message => {
     //calcul
     if (command === `${prefix}calcul`) {
 
-        const math = require("math-expression-evaluator"); 
-
         if (!args[0]) return message.channel.send("Entrez des chiffres !");
         let calcul;
 
@@ -431,4 +431,4 @@ bot.on('message', async message => {
 
 });
 
-bot.login(process.envTOKEN);
+bot.login(process.env.TOKEN);
