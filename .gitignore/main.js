@@ -1,8 +1,6 @@
 const Discord = require('discord.js');
 
-const bot = new Discord.Client({disableEveryone: true});
-
-const math = require("math-expression-evaluator"); 
+const bot = new Discord.Client({disableEveryone: true}); 
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
@@ -106,7 +104,6 @@ bot.on('message', async message => {
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
-        .addField(`${prefix}calcul <nombre (+ / - / * / x) nombre>`, 'SkyDream va faire ton calcul.')
         .addField(`${prefix}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
@@ -408,26 +405,6 @@ bot.on('message', async message => {
                 await Mes2.react('?')
             });
     }     
-    
-    //calcul
-    if (command === `${prefix}calcul`) {
-
-        if (!args[0]) return message.channel.send("Entrez des chiffres !");
-        let calcul;
-
-        try {
-            calcul = math.eval(args.join(' '));
-        } catch (e) {
-            return message.channel.send("Désolé, entrez des chiffres valides !");
-        }
-
-        const mathembed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .addField('Chiffres:', args.join(' '))
-        .addField('Résultat:', calcul)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
-        message.channel.send(mathembed);
-    }
 
 });
 
