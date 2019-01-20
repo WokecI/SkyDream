@@ -380,8 +380,8 @@ bot.on('message', async message => {
     .setFooter("Exécutée par:" + " " + message.author.tag);
 
     let Mes = await message.channel.send(sondagembed);
-    await Mes.react('?')
-    await Mes.react('?')
+    await Mes.react('✅')
+    await Mes.react('❌')
     }
 
     //suggestion
@@ -400,12 +400,12 @@ bot.on('message', async message => {
 
         var Mes2 = await bot.channels.get(`533926069045297167`)
             Mes2.send(sugembed).then(async function (Mes2) {
-                await Mes2.react('?')
-                await Mes2.react('??')
-                await Mes2.react('?')
+                await Mes2.react('✅')
+                await Mes2.react('🤔')
+                await Mes2.react('❌')
             });
     }     
 
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTMzNjM2ODczMTk3NzE1NDU2.DyPHBg.RaolNmpkmlfBc6rj_Hb_p7tpwi4");
