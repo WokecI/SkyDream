@@ -89,6 +89,7 @@ bot.on('message', async message => {
         let help1 = new Discord.RichEmbed()
         .setTitle('Help:')
         .setColor('RANDOM')
+        .addField("Les <> sont obligatoires/Les () sont pas necessaire")
         .addField(`${prefix}helpmod`, 'Envois les commandes de modération.')
         .addField(`${prefix}infoserv`, 'Envois les informations sur du serveur.')
         .addField(`${prefix}infobot`, 'Envois les informations sur le bot.')
@@ -331,7 +332,7 @@ bot.on('message', async message => {
  
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel
-            .send('?')
+            .send('✅')
             .then(msg => msg.delete(3000));
         });
     }
@@ -396,8 +397,19 @@ bot.on('message', async message => {
                 await Mes2.react('🤔')
                 await Mes2.react('❌')
             });
-    }     
-
+    }   
+    
+    //avatar
+    if (command === `${prefix}avatar`) {
+    let user1 = message.mentions.users.first() ? message.mentions.users.first() : message.author
+  let ava1 = user1.displayAvatarURL
+  let embedav = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setTitle("Avatar de:" + " " + user1.username)
+      .setImage(ava1)
+      .setFooter("Exécutée par:" + " " + message.author.tag);
+  message.channel.send(embedav);
+    }
 });
 
-bot.login(process.env.TOKEN);
+bot.login("NTMzNjM2ODczMTk3NzE1NDU2.DyPHBg.RaolNmpkmlfBc6rj_Hb_p7tpwi4");
