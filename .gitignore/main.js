@@ -412,4 +412,4 @@ bot.on('message', async message => {
     }
 });
 
-bot.login("NTMzNjM2ODczMTk3NzE1NDU2.DyPHBg.RaolNmpkmlfBc6rj_Hb_p7tpwi4");
+bot.login(process.env.TOKEN);
