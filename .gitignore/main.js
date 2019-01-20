@@ -2,26 +2,12 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client({disableEveryone: true}); 
 
-bot.on("ready", async () => {
-    console.log(`${bot.user.username} est en ligne !`);
-    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size} users`)
-});
-
-bot.on("guildCreate", guild => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size} users`)
+bot.on("ready", async() =>{
+    console.log(`${bot.user.username} est en ligne`)
+    setInterval(function(){
+    bot.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size}`)
     });
-    
-bot.on("guildDelete", guild => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size} users`)
-    });
-
-bot.on("guildMemberAdd", member => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size} users`);
-    });
-
-bot.on("guildMemberRemove", member => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size} users`)
-    });
+    }, 10000); 
   
 bot.on('message', async message => {
     if (message.author.bot) return;
