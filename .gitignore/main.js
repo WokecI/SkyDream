@@ -4,23 +4,23 @@ const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
-    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size}`)
 });
 
 bot.on("guildCreate", guild => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size}`)
     });
     
 bot.on("guildDelete", guild => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size}`)
     });
 
-bot.on("guildMemberAdd", user => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+bot.on("guildMemberAdd", member => {
+    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size}`);
     });
 
-bot.on("guildMemberRemove", user => {
-    bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
+bot.on("guildMemberRemove", member => {
+    bot.user.setActivity(`.help sur ${bot.guilds.size} servs | ${bot.users.size}`)
     });
   
 bot.on('message', async message => {
@@ -408,4 +408,4 @@ bot.on('message', async message => {
 
 });
 
-bot.login("NTMzNjM2ODczMTk3NzE1NDU2.DyPHBg.RaolNmpkmlfBc6rj_Hb_p7tpwi4");
+bot.login(process.env.TOKEN);
