@@ -66,22 +66,28 @@ bot.on('message', async message => {
 
     //informations sur le joueur
     if (command === `${prefix}info`) {
-        let usercreate = message.author.createdAt.toString().split(" ");
-        let userjoin = message.member.joinedAt.toString().split(" ");
+        //let usercreate = message.author.createdAt.toString().split(" ");
+        //let userjoin = message.member.joinedAt.toString().split(" ");
     
         let jicon = message.author.avatarURL;
 
-        let jembed = new Discord.RichEmbed()
-            .setTitle('Informations sur le joueur:')
-            .setColor('RANDOM')
-            .setThumbnail(jicon)
-            .addField('Pseudo:', message.author.tag, true)
-            .addField('ID:', message.author.id, true)
-            .addField('Compte créé le:', usercreate[2] + '/' + usercreate[1] + '/' + usercreate[3] + '/' + usercreate[4], true)
-            .addField('Tu a rejoint le:', userjoin[2] + '/' + userjoin[1] + '/' + userjoin[3] + '/' + userjoin[4],true)
-            .setFooter("Exécutée par:" + " " + message.author.tag);
+        const moment = require("moment");
+    moment.locale("fr");
 
-        return message.channel.send(jembed);
+ var temps = moment(message.createdTimestamp).format("LLLL");
+ let user = message.mentions.users.first() || message.author;
+ let member = message.mentions.members.first() || message.member;
+ let jembed = new Discord.RichEmbed()
+        .setColor(10181046)
+        .setThumbnail(member.user.avatarURL) 
+        .addField('👤 Pseudo', member.user.username, true)
+        .addField('🆔 ID', member.id, true)
+        .addField('#⃣ Tag',  `#${member.user.discriminator}`, true)
+        .addField('🤖 Type', member.user.bot ? 'Bot' : 'Humain', true)
+        .addField('🎮 Jeu', member.user.presence.game ? member.user.presence.game.name : 'pas de jeux', true)
+        .addField('📅 Arriver sur le serveur', moment(message.guild.members.get(member.id).joinedAt).format("LL"), true)
+        .addField('📅 Compte discord crée le', moment(member.user.createdAt).format("LL"), true)
+        message.channel.send(jembed)
     }
 
     //help
@@ -93,10 +99,11 @@ bot.on('message', async message => {
         .addField(`${prefix}helpmod`, 'Envois les commandes de modération.')
         .addField(`${prefix}infoserv`, 'Envois les informations sur du serveur.')
         .addField(`${prefix}infobot`, 'Envois les informations sur le bot.')
-        .addField(`${prefix}info`, 'Envois les informations sur toi.')
+        .addField(`${prefix}info (mention)`, 'Envois les informations sur toi.')
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
+        .addField(`${prefix}avatar (mention)`, 'SkyDream va parler a ta place.')
         .addField(`${prefix}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
