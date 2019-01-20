@@ -288,7 +288,7 @@ bot.on('message', async message => {
     let res = Math.floor((Math.random() * replies.length));
 
     let Ball8 = new Discord.RichEmbed()
-    .setTitle("?? 8Ball ??")
+    .setTitle("🎱 8Ball 🎱")
     .setColor("RANDOM")
     .addField("Question:", question)
     .addField("Réponse:", replies[res])
