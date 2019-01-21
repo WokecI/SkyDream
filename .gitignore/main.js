@@ -461,7 +461,7 @@ bot.on('message', async message => {
  
     //fun
     if (command === `${PREFIX}kill`) {
-            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisonner.", "ces noyé.", "ces asphyxié.", "ces suicidé"];
+            let replies = ["s'est fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "s'est fait empoisonner.", "s'est noyé.", "s'est asphyxié.", "s'est suicidé", "s'est pendu"];
             let res = Math.floor((Math.random() * replies.length));
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
@@ -475,7 +475,7 @@ bot.on('message', async message => {
     
     //Bingo
     if (command === `${PREFIX}bingo`) {
-    const pretty = require('pretty-ms')
+    
     let limit = message.content.split(" ")[1];
     let temps = message.content.split(" ")[2];
 
