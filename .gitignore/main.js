@@ -428,6 +428,27 @@ bot.on('message', async message => {
       .setFooter("Exécutée par:" + " " + message.author.tag);
   message.channel.send(embedav);
     }
+
+    //calcul
+    if (command === `${prefix}calcul`) {
+        const math = require('math-expression-evaluator');
+
+        if (!args[0]) return message.channel.send("Entrez un calcul !");
+        let calcul;
+
+        try {
+            calcul = math.eval(args.join(' '));
+        } catch (e) {
+            return message.channel.send("Désolé, entrez des chiffres valides !");
+        }
+
+        let mathembed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .addField('Calcul:', args.join(' '))
+        .addField('Résultat:', calcul)
+        .setFooter("Exécutée par:" + " " + message.author.tag);
+  message.channel.send(mathembed);
+    }
 });
 
 bot.login(process.env.TOKEN);
