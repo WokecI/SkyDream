@@ -38,7 +38,7 @@ bot.on('message', async message => {
             .setColor('RANDOM')
             .setThumbnail(servIcon)
             .addField('Nom du serveur:', message.guild.name, true)
-            .addField('Nombre de bots:', member.user.bot.size, true)
+            .addField('Nombre total de membres:', message.guild.memberCount, true)
             .addField('Créé le:',  moment3(message.guild.createdAt).format("LL"), true)
             .setFooter("Exécutée par:" + " " + message.author.tag);
         return message.channel.send(servEmbed);
