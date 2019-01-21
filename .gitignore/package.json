@@ -10,9 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2",
+    "ffmpeg-binaries": "^3.2.2-3",
     "math-expression-evaluator": "^1.2.17",
     "moment": "^2.23.0",
-    "ms": "^2.1.1",
+    "moment-duration-format": "^2.2.2",
+    "opusscript": "0.0.6",
+    "pretty-ms": "^4.0.0",
+    "simple-youtube-api": "^5.1.1",
+    "url": "^0.11.0",
+    "util": "^0.11.1",
     "ytdl-core": "^0.29.1"
   }
 }
