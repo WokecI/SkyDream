@@ -66,8 +66,8 @@ bot.on('message', async message => {
 
     //informations sur le joueur
     if (command === `${prefix}info`) {
-        //let usercreate = message.author.createdAt.toString().split(" ");
-        //let userjoin = message.member.joinedAt.toString().split(" ");
+        let usercreate = message.author.createdAt.toString().split(" ");
+        let userjoin = message.member.joinedAt.toString().split(" ");
     
         let jicon = message.author.avatarURL;
 
@@ -77,7 +77,7 @@ bot.on('message', async message => {
  var temps = moment(message.createdTimestamp).format("LLLL");
  let user = message.mentions.users.first() || message.author;
  let member = message.mentions.members.first() || message.member;
- let jembed = new Discord.RichEmbed()
+ let embed = new Discord.RichEmbed()
         .setColor(10181046)
         .setThumbnail(member.user.avatarURL) 
         .addField('👤 Pseudo', member.user.username, true)
@@ -87,7 +87,8 @@ bot.on('message', async message => {
         .addField('🎮 Jeu', member.user.presence.game ? member.user.presence.game.name : 'pas de jeux', true)
         .addField('📅 Arriver sur le serveur', moment(message.guild.members.get(member.id).joinedAt).format("LL"), true)
         .addField('📅 Compte discord crée le', moment(member.user.createdAt).format("LL"), true)
-        message.channel.send(jembed)
+        message.channel.send(embed)
+
     }
 
     //help
@@ -99,11 +100,11 @@ bot.on('message', async message => {
         .addField(`${prefix}helpmod`, 'Envois les commandes de modération.')
         .addField(`${prefix}infoserv`, 'Envois les informations sur du serveur.')
         .addField(`${prefix}infobot`, 'Envois les informations sur le bot.')
-        .addField(`${prefix}info (mention)`, 'Envois les informations sur toi.')
+        .addField(`${prefix}info`, 'Envois les informations sur toi.')
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
-        .addField(`${prefix}avatar (mention)`, "SkyDream va donner l'avatar souhaiter.")
+        .addField(`${prefix}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
         .addField(`${prefix}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
