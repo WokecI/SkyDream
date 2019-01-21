@@ -115,6 +115,7 @@ bot.on('message', async message => {
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
         .addField(`${prefix}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
+        .addField(`${prefix}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
         .addField(`${prefix}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
