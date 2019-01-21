@@ -459,7 +459,7 @@ bot.on('message', async message => {
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
 
-    message.channel.send(`${member.user.username}` + res).then(Message => {
+    message.channel.send(`${member.user.username}` + replies[res]).then(Message => {
         setTimeout(() => { Message.edit("Réaparition..."); }, 4000);
         setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username}`); }, 4000);
     
