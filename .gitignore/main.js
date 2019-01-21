@@ -70,17 +70,15 @@ bot.on('message', async message => {
 
     //informations sur le joueur
     if (command === `${prefix}info`) {
-        let usercreate = message.author.createdAt.toString().split(" ");
-        let userjoin = message.member.joinedAt.toString().split(" ");
-    
-        let jicon = message.author.avatarURL;
+
 
         const moment = require("moment");
     moment.locale("fr");
 
- let member = message.mentions.members.first() || message.author;
+    let user = message.mentions.users.first() || message.author;
+    let member = message.mentions.members.first() || message.member;
  let embed = new Discord.RichEmbed()
-        .setColor(10181046)
+        .setColor('RANDOM')
         .setThumbnail(member.user.avatarURL) 
         .addField('Pseudo:', member.user.username, true)
         .addField('ID:', member.id, true)
