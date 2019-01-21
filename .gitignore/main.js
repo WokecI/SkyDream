@@ -119,14 +119,15 @@ bot.on('message', async message => {
         .addField(`${PREFIX}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
         .addField(`${PREFIX}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
         .addField(`${PREFIX}kill (mention)`, "Tuez toutes les personnes que vous souhaitez")
+        .addField(`${PREFIX}bingo <nombre entre 0 et 5000> <temps [1000 = 1sec]>`, "Démare un bongo a temps limiter !")
         .addField(`${PREFIX}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
-        message.channel.send(help).then(async function (help) {
-            await help.react('⏪')
-            await help.react('⏩')
+        message.channel.send(help)
+        //.then(async function (help) {
+        //    await help.react('⏪')
+        //  await help.react('⏩')
 
-        });
-    }
+        }
     //helpmod
     if (command === `${PREFIX}helpmod`) {
         let help2 = new Discord.RichEmbed()
@@ -481,8 +482,11 @@ bot.on('message', async message => {
           if(!limit || isNaN(limit) || limit > 5000) {
               return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 5000] [temps (1000 = 1sec)]`);
           }
-          if (!args[0]) return "Envois lla commande valide !"
-         
+          if (!args[0]) return "Envois la commande valide !"
+
+          if (!message.author.hasPermission("MANAGE_MESSAGES"))
+          return "Tu na pas la permissions pour faire cela !"
+
             message.channel.send(`Un bingo vient de commencer ! Vous avez **${temps}** minutes pour trouver le nombre mystère qui est compris entre **0** et **${limit}**`)
                 .then(async(m) => {
                   const random = Math.floor(Math.random() * limit);
