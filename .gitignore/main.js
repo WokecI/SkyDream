@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-const bot = new Discord.Client({disableEveryone: true}); 
+const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
@@ -19,13 +19,13 @@ bot.on('message', async message => {
     if (message.author.bot) return;
     if (message.channel.type === 'dm') return
 
-    let prefix = ".";
+    let PREFIX = ".";
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
     let args = messageArray.slice(1);
 
     //information sur le serveur
-    if (command === `${prefix}infoserv`) {
+    if (command === `${PREFIX}infoserv`) {
     let servcreate = message.guild.createdAt.toString().split(" ");
 
     const moment3 = require("moment");
@@ -54,7 +54,7 @@ bot.on('message', async message => {
    }
 
     //informations sur le bot
-    if (command === `${prefix}infobot`) {
+    if (command === `${PREFIX}infobot`) {
 
         let botIcon = bot.user.displayAvatarURL;
 
@@ -78,7 +78,7 @@ bot.on('message', async message => {
     }
 
     //informations sur le joueur
-    if (command === `${prefix}info`) {
+    if (command === `${PREFIX}info`) {
 
 
         const moment = require("moment");
@@ -102,41 +102,41 @@ bot.on('message', async message => {
     }
 
     //help
-    if (command === `${prefix}help`) {
+    if (command === `${PREFIX}help`) {
         let help1 = new Discord.RichEmbed()
         .setTitle('Help:')
         .setColor('RANDOM')
         .setDescription("Les <> sont obligatoires/Les () sont pas necessaire")
-        .addField(`${prefix}helpmod`, 'Envois les commandes de modération.')
-        .addField(`${prefix}infoserv`, 'Envois les informations sur du serveur.')
-        .addField(`${prefix}infobot`, 'Envois les informations sur le bot.')
-        .addField(`${prefix}info (mention)`, 'Envois les informations sur la personne souhaiter.')
-        .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
-        .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
-        .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
-        .addField(`${prefix}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
-        .addField(`${prefix}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
-        .addField(`${prefix}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
+        .addField(`${PREFIX}helpmod`, 'Envois les commandes de modération.')
+        .addField(`${PREFIX}infoserv`, 'Envois les informations sur du serveur.')
+        .addField(`${PREFIX}infobot`, 'Envois les informations sur le bot.')
+        .addField(`${PREFIX}info (mention)`, 'Envois les informations sur la personne souhaiter.')
+        .addField(`${PREFIX}8ball <question>`, 'SkyDream va répondre à tes questions.')
+        .addField(`${PREFIX}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
+        .addField(`${PREFIX}say <message>`, 'SkyDream va parler a ta place.')
+        .addField(`${PREFIX}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
+        .addField(`${PREFIX}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
+        .addField(`${PREFIX}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
     }
     //helpmod
-    if (command === `${prefix}helpmod`) {
+    if (command === `${PREFIX}helpmod`) {
         let help2 = new Discord.RichEmbed()
         .setTitle('Helpmod:')
         .setColor('RANDOM')
-        .addField(`${prefix}report <mention> <raison>`, 'Report un utilisateur.')
-        .addField(`${prefix}kick <mention> <raison>`, 'Kick un utilisateur.')
-        .addField(`${prefix}ban <mention> <raison>`, 'ban un utilisateur.')
-        .addField(`${prefix}clear <nombre>`, 'Fait le ménage.')
-        .addField(`${prefix}sondage <question>`, "Crée un sondage pour avoir l'avis des autres.")
+        .addField(`${PREFIX}report <mention> <raison>`, 'Report un utilisateur.')
+        .addField(`${PREFIX}kick <mention> <raison>`, 'Kick un utilisateur.')
+        .addField(`${PREFIX}ban <mention> <raison>`, 'ban un utilisateur.')
+        .addField(`${PREFIX}clear <nombre>`, 'Fait le ménage.')
+        .addField(`${PREFIX}sondage <question>`, "Crée un sondage pour avoir l'avis des autres.")
        
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help2);
     }
 
     //report
-    if (command === `${prefix}report`) {
+    if (command === `${PREFIX}report`) {
         let reportedUser = message.guild.member(
             message.mentions.users.first() || message.guild.members.get(args[0])
         );
@@ -187,7 +187,7 @@ bot.on('message', async message => {
     }
 
     //kick
-    if (command === `${prefix}kick`) {
+    if (command === `${PREFIX}kick`) {
         let kickUser = message.guild.member(
             message.mentions.users.first() || message.guild.members.get(args[0])
         );
@@ -244,7 +244,7 @@ bot.on('message', async message => {
     }
 
     //ban
-    if (command === `${prefix}ban`) {
+    if (command === `${PREFIX}ban`) {
         let  banUser = message.guild.member(
             message.mentions.users.first() || message.guild.members.get(args[0])
         );
@@ -300,7 +300,7 @@ bot.on('message', async message => {
         message.channel.send(':white_check_mark: Utilisateur ban avec succés ! :white_check_mark:');
     }
     //8Ball
-    if (command === `${prefix}8ball`) {
+    if (command === `${PREFIX}8ball`) {
     if (!args[1]) return message.reply("Entrez une question !");
 
     let replies = ["Essaye plus tard.", "Peut être.", "Pas d'avis.", "C'est ton destin.", "Le sort en est jeté.", "Une chance sur deux.", "D'après moi oui.", "C'est certain.", "Oui absolument.", "Repose ta question.", "Tu peut compter dessus.", "Sans aucun doute.", "Très probable.", "Oui.", "C'est bien parti.", "C'est non.", "Peu probable.", "Faut pas rêver.", "N'y compte pas.", "Impossible.", "Même pas en rêve.", "Bien sur.", "Sûrrement.", "Tout à fait."];
@@ -317,7 +317,7 @@ bot.on('message', async message => {
     }
 
     //invite
-    if (command === `${prefix}invite`) {
+    if (command === `${PREFIX}invite`) {
         let liens = new Discord.RichEmbed()
         .setTitle("L'invitation:")
         .addField("Lien pour m'inviter:", ">[Clique ici](https://discordapp.com/oauth2/authorize?client_id=533636873197715456&scope=bot&permissions=8)< pour m'inviter sur ton serveur !")
@@ -326,12 +326,12 @@ bot.on('message', async message => {
     }
     
     //clear
-    if (command === `${prefix}clear`) {
+    if (command === `${PREFIX}clear`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES"))
         return message.reply(":x: Vous n'avez pas la permission pour clear ! :x:");
         if (!args[0])
         return message.reply(
-            `Erreur: ${prefix}clear <nombre de message a suprimé>`
+            `Erreur: ${PREFIX}clear <nombre de message a suprimé>`
         );
                    
     let clearChannel = message.guild.channels.find(x => x.name === "logs");
@@ -357,7 +357,7 @@ bot.on('message', async message => {
     }
 
     //say
-    if (command === `${prefix}say`) {
+    if (command === `${PREFIX}say`) {
     let messagetobot = args.join(' ');
 
     let sayChannel = message.guild.channels.find(x => x.name === "logs");
@@ -377,11 +377,11 @@ bot.on('message', async message => {
     }
 
     //sondage
-    if (command === `${prefix}sondage`) {
+    if (command === `${PREFIX}sondage`) {
     if (!message.member.hasPermission("MANAGE_CHANNELS")) {
         return message.channel.send(":x: Vous n'avez pas la permission pour cela ! :x:")
     };
-    if (!args[0]) return message.channel.send(`Erreur: ${prefix}sondage <question>`);
+    if (!args[0]) return message.channel.send(`Erreur: ${PREFIX}sondage <question>`);
 
     message.delete().catch();
 
@@ -397,9 +397,9 @@ bot.on('message', async message => {
     }
 
     //suggestion
-    if (command === `${prefix}suggestion`) {
+    if (command === `${PREFIX}suggestion`) {
         let messagesug = args.join(' ');
-        if (!args[0]) return message.channel.send(`Erreur: ${prefix}suggestion <proposition>`);
+        if (!args[0]) return message.channel.send(`Erreur: ${PREFIX}suggestion <proposition>`);
 
         let sugembed = new Discord.RichEmbed()
         .setTitle('Nouvelle suggestion:')
@@ -419,7 +419,7 @@ bot.on('message', async message => {
     }   
     
     //avatar
-    if (command === `${prefix}avatar`) {
+    if (command === `${PREFIX}avatar`) {
     let user1 = message.mentions.users.first() ? message.mentions.users.first() : message.author
   let ava1 = user1.displayAvatarURL
   let embedav = new Discord.RichEmbed()
@@ -431,7 +431,7 @@ bot.on('message', async message => {
     }
 
     //calcul
-    if (command === `${prefix}calcul`) {
+    if (command === `${PREFIX}calcul`) {
         const math = require('math-expression-evaluator');
 
         if (!args[0]) return message.channel.send("Entrez un calcul !");
@@ -450,6 +450,17 @@ bot.on('message', async message => {
         .setFooter("Exécutée par:" + " " + message.author.tag);
   message.channel.send(mathembed);
     }
+ 
+    //fun
+    if (command === `${PREFIX}kill`) {
+        let user = message.mentions.users.first() || message.author;
+        let member = message.mentions.members.first() || message.member;
+    message.channel.send(`${member.user.username} est mort.`).then(Message => {
+        setTimeout(() => { Message.edit("Réaparition..."); }, 1000);
+        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username}`); }, 1000);
+    
+    });
+}
 });
 
 bot.login(process.env.TOKEN);
