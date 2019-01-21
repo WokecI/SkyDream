@@ -38,8 +38,17 @@ bot.on('message', async message => {
             .setColor('RANDOM')
             .setThumbnail(servIcon)
             .addField('Nom du serveur:', message.guild.name, true)
-            .addField('Nombre total de membres:', message.guild.memberCount, true)
             .addField('Créé le:',  moment3(message.guild.createdAt).format("LL"), true)
+            .addField('Propriétaire:', message.guild.owner.user.tag, true)
+            .addField('ID:', message.guild.id, true)
+            .addField('Région:', message.guild.region, true)
+            .addField('Nombre total de membres:', message.guild.memberCount, true)
+            .addField('Bots:', message.guild.members.filter(m => m.user.bot).size, true)
+            .addField('Humains:', message.guild.members.filter(m => ! m.user.bot).size, true)
+            .addField('Nombres de roles:', message.guild.roles.size, true)
+            .addField('Channels textuels:', message.guild.channels.filter(channel => channel.type === 'text').size, true)
+            .addField('Channels vocal:', message.guild.channels.filter(channel => channel.type === 'voice').size, true)
+            .addField("Nombre d'emojis:", message.guild.emojis.filter(e=>e.toString()).size || "Pas d'emojis.", true)
             .setFooter("Exécutée par:" + " " + message.author.tag);
         return message.channel.send(servEmbed);
    }
