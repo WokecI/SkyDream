@@ -96,7 +96,7 @@ bot.on('message', async message => {
         let help1 = new Discord.RichEmbed()
         .setTitle('Help:')
         .setColor('RANDOM')
-        .addField("Les <> sont obligatoires/Les () sont pas necessaire")
+        .setDescription("Les <> sont obligatoires/Les () sont pas necessaire")
         .addField(`${prefix}helpmod`, 'Envois les commandes de modération.')
         .addField(`${prefix}infoserv`, 'Envois les informations sur du serveur.')
         .addField(`${prefix}infobot`, 'Envois les informations sur le bot.')
