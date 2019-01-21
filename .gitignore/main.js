@@ -119,7 +119,7 @@ bot.on('message', async message => {
         .addField(`${PREFIX}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
         .addField(`${PREFIX}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
         .addField(`${PREFIX}kill (mention)`, "Tuez toutes les personnes que vous souhaitez")
-        .addField(`${PREFIX}bingo <nombre entre 0 et 5000> <temps [1000 = 1sec]>`, "Démare un bongo a temps limiter !")
+        .addField(`${PREFIX}bingo <nombre entre 0 et 10000> <temps [1000 = 1sec]>`, "Démare un bongo a temps limiter !")
         .addField(`${PREFIX}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help)
@@ -461,7 +461,7 @@ bot.on('message', async message => {
  
     //fun
     if (command === `${PREFIX}kill`) {
-            let replies = ["s'est fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "s'est fait empoisonner.", "s'est noyé.", "s'est asphyxié.", "s'est suicidé", "s'est pendu"];
+            let replies = ["s'est fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "s'est fait empoisonner.", "s'est noyé.", "s'est asphyxié.", "s'est suicidé", "s'est pendu", "s'est fait déchiqueter par un zombie.", "est mort de rire."];
             let res = Math.floor((Math.random() * replies.length));
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
@@ -479,7 +479,7 @@ bot.on('message', async message => {
     let limit = message.content.split(" ")[1];
     let temps = message.content.split(" ")[2];
 
-          if(!limit || isNaN(limit) || limit > 5000) {
+          if(!limit || isNaN(limit) || limit > 10000) {
               return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 5000] [temps (1000 = 1sec)]`);
           }
    
