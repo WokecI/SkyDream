@@ -468,7 +468,7 @@ bot.on('message', async message => {
 
     message.channel.send(`${member.user.username}`+ " " + replies[res]).then(Message => {
         setTimeout(() => { Message.edit("Réaparition..."); }, 4000);
-        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username} (raison mort :` + replies[res] + ')'); }, 4000);
+        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username} (raison mort: ` + replies[res] + ')'); }, 4000);
     
          });
     }  
@@ -482,10 +482,10 @@ bot.on('message', async message => {
           if(!limit || isNaN(limit) || limit > 5000) {
               return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 5000] [temps (1000 = 1sec)]`);
           }
-          if (!args[0]) return "Envois la commande valide !"
+   
 
-          if (!message.author.hasPermission("MANAGE_MESSAGES"))
-          return "Tu na pas la permissions pour faire cela !"
+       
+
 
             message.channel.send(`Un bingo vient de commencer ! Vous avez **${temps}** minutes pour trouver le nombre mystère qui est compris entre **0** et **${limit}**`)
                 .then(async(m) => {
