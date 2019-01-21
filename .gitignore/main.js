@@ -28,37 +28,41 @@ bot.on('message', async message => {
     if (command === `${prefix}infoserv`) {
     let servcreate = message.guild.createdAt.toString().split(" ");
 
+    const moment3 = require("moment");
+    moment3.locale("fr");
+
     let servIcon = message.guild.iconURL
 
     let servEmbed = new Discord.RichEmbed()
             .setTitle('Information du serveur:')
             .setColor('RANDOM')
             .setThumbnail(servIcon)
-            .addField('Nom du serveur:', message.guild.name,)
-            .addField('Nombre total de membres:', message.guild.memberCount,)
-            .addField('Créé le:', servcreate[2] + '/' + servcreate[1] + '/' + servcreate[3] + '/' + servcreate[4],)
+            .addField('Nom du serveur:', message.guild.name, true)
+            .addField('Nombre de bots:', member.user.bot.size, true)
+            .addField('Créé le:',  moment3(message.guild.createdAt).format("LL"), true)
             .setFooter("Exécutée par:" + " " + message.author.tag);
-           // .setFooter(message.author.tag + "/" + Datee.getDate() + "/" + (Datee.getMonth()+1) + "/" + Datee.getFullYear() + "/" + Datee.getHours() + ":" + Datee.getMinutes() + ":" + Datee.getSeconds());
         return message.channel.send(servEmbed);
    }
 
     //informations sur le bot
     if (command === `${prefix}infobot`) {
-        let botcreate = bot.user.createdAt.toString().split(" ");
 
         let botIcon = bot.user.displayAvatarURL;
+
+        const moment2 = require("moment");
+        moment2.locale("fr");
         
         let embed = new Discord.RichEmbed()
             .setTitle('Informations sur le bot:')
             .setColor('RANDOM')
             .setThumbnail(botIcon)
-            .addField('Nom du bot:', bot.user.username,)
-            .addField('Créé le:', botcreate[2] + '/' + botcreate[1] + '/' + botcreate[3] + '/' + botcreate[4],)
-            .addField('Créé par:','Skylost#5655')
-            .addField('Serveurs en tout:', bot.guilds.size)
-            .addField('Utilisateurs en tout:', bot.users.size)
-            .addField("API:", `${Math.round(bot.ping)}ms`)
-            .addField('Le discord officiel:', '>[Clique ici](https://discord.gg/FQE9x8R)< pour rejoindre le discord de SkyDream !')
+            .addField('Nom du bot:', bot.user.username, true)
+            .addField('crée le', moment2(bot.createdAt).format("LL"), true)
+            .addField('Créé par:','Skylost#5655', true)
+            .addField('Serveurs en tout:', bot.guilds.size, true)
+            .addField('Utilisateurs en tout:', bot.users.size, true)
+            .addField("API:", `${Math.round(bot.ping)}ms`, true)
+            .addField('Le discord officiel:', '>[Clique ici](https://discord.gg/FQE9x8R)< pour rejoindre le discord de SkyDream !', true)
             .setFooter("Exécutée par:" + " " + message.author.tag);
 
         return message.channel.send(embed);
@@ -74,19 +78,18 @@ bot.on('message', async message => {
         const moment = require("moment");
     moment.locale("fr");
 
- var temps = moment(message.createdTimestamp).format("LLLL");
- let user = message.mentions.users.first() || message.author;
- let member = message.mentions.members.first() || message.member;
+ let member = message.mentions.members.first() || message.author;
  let embed = new Discord.RichEmbed()
         .setColor(10181046)
         .setThumbnail(member.user.avatarURL) 
-        .addField('👤 Pseudo', member.user.username, true)
-        .addField('🆔 ID', member.id, true)
-        .addField('#⃣ Tag',  `#${member.user.discriminator}`, true)
-        .addField('🤖 Type', member.user.bot ? 'Bot' : 'Humain', true)
-        .addField('🎮 Jeu', member.user.presence.game ? member.user.presence.game.name : 'pas de jeux', true)
-        .addField('📅 Arriver sur le serveur', moment(message.guild.members.get(member.id).joinedAt).format("LL"), true)
-        .addField('📅 Compte discord crée le', moment(member.user.createdAt).format("LL"), true)
+        .addField('Pseudo:', member.user.username, true)
+        .addField('ID:', member.id, true)
+        .addField('Tag:',  `#${member.user.discriminator}`, true)
+        .addField('Type:', member.user.bot ? 'Bot' : 'Humain', true)
+        .addField('Jeu:', member.user.presence.game ? member.user.presence.game.name : 'pas de jeux', true)
+        .addField('Arriver sur le serveur:', moment(message.guild.members.get(member.id).joinedAt).format("LL"), true)
+        .addField('Compte discord crée le:', moment(member.user.createdAt).format("LL"), true)
+        .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(embed)
 
     }
