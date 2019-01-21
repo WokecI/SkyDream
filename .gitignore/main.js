@@ -100,7 +100,7 @@ bot.on('message', async message => {
         .addField(`${prefix}helpmod`, 'Envois les commandes de modération.')
         .addField(`${prefix}infoserv`, 'Envois les informations sur du serveur.')
         .addField(`${prefix}infobot`, 'Envois les informations sur le bot.')
-        .addField(`${prefix}info`, 'Envois les informations sur toi.')
+        .addField(`${prefix}info (mention)`, 'Envois les informations sur la personne souhaiter.')
         .addField(`${prefix}8ball <question>`, 'SkyDream va répondre à tes questions.')
         .addField(`${prefix}suggestion <proposition>`, 'Envois une suggestion sur le serveur officiel de SkyDream (sans abus).')
         .addField(`${prefix}say <message>`, 'SkyDream va parler a ta place.')
