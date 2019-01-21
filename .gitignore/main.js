@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client({disableEveryone: true});
 
+bot.login(process.env.TOKEN);
+
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
     bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
@@ -103,7 +105,7 @@ bot.on('message', async message => {
 
     //help
     if (command === `${PREFIX}help`) {
-        let help1 = new Discord.RichEmbed()
+        let help = new Discord.RichEmbed()
         .setTitle('Help:')
         .setColor('RANDOM')
         .setDescription("Les <> sont obligatoires/Les () sont pas necessaire")
@@ -116,10 +118,14 @@ bot.on('message', async message => {
         .addField(`${PREFIX}say <message>`, 'SkyDream va parler a ta place.')
         .addField(`${PREFIX}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
         .addField(`${PREFIX}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
-        .addField(`${PREFIX} .kill (mention)`, "Tuez toutes les personnes que vous souhaitez")
+        .addField(`${PREFIX}kill (mention)`, "Tuez toutes les personnes que vous souhaitez")
         .addField(`${PREFIX}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
-        message.channel.send(help1);
+        message.channel.send(help).then(async function (help) {
+            await help.react('⏪')
+            await help.react('⏩')
+
+        });
     }
     //helpmod
     if (command === `${PREFIX}helpmod`) {
@@ -454,7 +460,7 @@ bot.on('message', async message => {
  
     //fun
     if (command === `${PREFIX}kill`) {
-            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisoné.", "ces noyé.", "ces asphyxié.", "ces suicidé"];
+            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisonner.", "ces noyé.", "ces asphyxié.", "ces suicidé"];
             let res = Math.floor((Math.random() * replies.length));
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
@@ -466,7 +472,46 @@ bot.on('message', async message => {
          });
     }  
     
-    
-});
+    //Bingo
+    if (command === `${PREFIX}bingo`) {
+    const pretty = require('pretty-ms')
+    let limit = message.content.split(" ")[1];
+    let temps = message.content.split(" ")[2];
 
-bot.login(process.env.TOKEN);
+          if(!limit || isNaN(limit) || limit > 5000) {
+              return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 5000] [temps (1000 = 1sec)]`);
+          }
+          if (!args[0]) return "Envois lla commande valide !"
+         
+            message.channel.send(`Un bingo vient de commencer ! Vous avez **${temps}** minutes pour trouver le nombre mystère qui est compris entre **0** et **${limit}**`)
+                .then(async(m) => {
+                  const random = Math.floor(Math.random() * limit);
+                  const filter = m => m.author.id !== bot.user.id;
+         
+                    const collector = await m.channel.createMessageCollector(filter, { time: temps });
+         
+                    collector.on("collect", async(collected) => {
+                        if(collected.content.toLowerCase() === `${PREFIX}bstop`) {
+                            return collector.stop(`✅ Bingo annulé !`);
+                        } else {
+                            let response = await collected.content.trim();
+                            response = parseInt(response);
+         
+                            if(isNaN(response)) {
+                                return message.channel.send("Ce n'est pas un nombre !");
+                            }
+                            else if(response === random) {
+                                await collector.stop(`${collected.author.toString()} a remporté le Bingo, le nombre était: **${random}**`);
+                            }
+                        }
+                    });
+                    collector.on("end", async(collected, reason) => {
+                        if(reason && reason !== "time") {
+                            return message.channel.send(reason);
+                        } else {
+                            return message.channel.send(`Personne n'a remporté le Bingo, le nombre était : **${random}**`);
+                        }
+                    });
+                });
+            }
+});
