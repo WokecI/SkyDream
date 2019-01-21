@@ -116,6 +116,7 @@ bot.on('message', async message => {
         .addField(`${PREFIX}say <message>`, 'SkyDream va parler a ta place.')
         .addField(`${PREFIX}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
         .addField(`${PREFIX}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
+        .addField(`${PREFIX} .kill (mention)`, "Tuez toutes les personnes que vous souhaitez")
         .addField(`${PREFIX}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help1);
@@ -453,15 +454,19 @@ bot.on('message', async message => {
  
     //fun
     if (command === `${PREFIX}kill`) {
+            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisoné."];
+            let res = Math.floor((Math.random() * replies.length));
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
-    message.channel.send(`${member.user.username} est mort.`).then(Message => {
-        setTimeout(() => { Message.edit("Réaparition..."); }, 2000);
+
+    message.channel.send(`${member.user.username}` + res).then(Message => {
+        setTimeout(() => { Message.edit("Réaparition..."); }, 4000);
         setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username}`); }, 4000);
     
-    });
-}
-
+         });
+    }  
+    
+    
 });
 
 bot.login(process.env.TOKEN);
