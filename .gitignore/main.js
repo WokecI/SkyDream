@@ -454,14 +454,14 @@ bot.on('message', async message => {
  
     //fun
     if (command === `${PREFIX}kill`) {
-            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisoné."];
+            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisoné.", "ces noyé.", "ces asphyxié.", "ces suicidé"];
             let res = Math.floor((Math.random() * replies.length));
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
 
     message.channel.send(`${member.user.username}`+ " " + replies[res]).then(Message => {
         setTimeout(() => { Message.edit("Réaparition..."); }, 4000);
-        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username}`); }, 4000);
+        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username} (raison mort :` + replies[res] + ')'); }, 4000);
     
          });
     }  
