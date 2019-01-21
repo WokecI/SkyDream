@@ -456,11 +456,12 @@ bot.on('message', async message => {
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
     message.channel.send(`${member.user.username} est mort.`).then(Message => {
-        setTimeout(() => { Message.edit("Réaparition..."); }, 1000);
-        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username}`); }, 1000);
+        setTimeout(() => { Message.edit("Réaparition..."); }, 2000);
+        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username}`); }, 4000);
     
     });
 }
+
 });
 
 bot.login(process.env.TOKEN);
