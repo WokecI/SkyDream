@@ -13,7 +13,6 @@
     "math-expression-evaluator": "^1.2.17",
     "moment": "^2.23.0",
     "ms": "^2.1.1",
-    "opusscript": "file:node_modules/opusscript",
     "ytdl-core": "^0.29.1"
   }
 }
