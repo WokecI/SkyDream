@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+let timestamp = new Date()
 
 const bot = new Discord.Client({disableEveryone: true});
 
@@ -51,7 +52,7 @@ bot.on('message', async message => {
             .addField('Channels textuels:', message.guild.channels.filter(channel => channel.type === 'text').size, true)
             .addField('Channels vocal:', message.guild.channels.filter(channel => channel.type === 'voice').size, true)
             .addField("Nombre d'emojis:", message.guild.emojis.filter(e=>e.toString()).size || "Pas d'emojis.", true)
-            .setFooter("Exécutée par:" + " " + message.author.tag);
+            .setFooter("Exécutée par:" + " " + message.author.tag + " | " + timestamp);
         return message.channel.send(servEmbed);
    }
 
