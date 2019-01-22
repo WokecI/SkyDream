@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
-let timestamp = new Date()
+
 
 
 const bot = new Discord.Client({disableEveryone: true});
 
-let icon_url = bot.user.avatarURL
+
 
 bot.login(process.env.TOKEN);
 
