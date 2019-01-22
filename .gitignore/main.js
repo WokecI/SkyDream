@@ -484,7 +484,7 @@ bot.on('message', async message => {
     let temps = message.content.split(" ")[2];
 
           if(!limit || isNaN(limit) || limit > 10000) {
-              return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 5000] [temps (1000 = 1sec)]`);
+              return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 10000] [temps (1000 = 1sec)]`);
           }
    
 
