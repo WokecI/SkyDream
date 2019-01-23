@@ -14,6 +14,7 @@
     "math-expression-evaluator": "^1.2.17",
     "moment": "^2.23.0",
     "moment-duration-format": "^2.2.2",
+    "ms": "^2.1.1",
     "opusscript": "0.0.6",
     "pretty-ms": "^4.0.0",
     "simple-youtube-api": "^5.1.1",
