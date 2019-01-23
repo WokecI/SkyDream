@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client({disableEveryone: true});
 
-bot.login(process.env.TOKEN);
-
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
     bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
@@ -561,6 +559,7 @@ bot.on('message', async message => {
   .setColor("RANDOM")
   .addField("Muteur:", message.author)
   .addField("Muté:", tomute)
+  .addField("Depuis le salon:", message.channel.name)
   .setFooter("Exécutée par:" + " " + message.author.tag);
 
   muteChannel.send(mutembed);
@@ -571,4 +570,5 @@ bot.on('message', async message => {
   }, ms(mutetime));
 }
 
+bot.login(process.env.TOKEN);
 });
