@@ -3,6 +3,10 @@ const Discord = require('discord.js');
 const bot = new Discord.Client({disableEveryone: true});
 bot.login(process.env.TOKEN);
 
+
+let timestamp = new Date()
+
+
 bot.on("ready", async () => {
     console.log(`${bot.user.username} est en ligne !`);
     bot.user.setActivity(`.help sur ${bot.guilds.size} serveurs`);
@@ -50,7 +54,7 @@ bot.on('message', async message => {
             .addField('Channels textuels:', message.guild.channels.filter(channel => channel.type === 'text').size, true)
             .addField('Channels vocal:', message.guild.channels.filter(channel => channel.type === 'voice').size, true)
             .addField("Nombre d'emojis:", message.guild.emojis.filter(e=>e.toString()).size || "Pas d'emojis.", true)
-            .setFooter("Exécutée par:" + " " + message.author.tag);
+            .setFooter(message.author.tag + " | " + timestamp);
         return message.channel.send(servEmbed);
    }
 
@@ -73,7 +77,7 @@ bot.on('message', async message => {
             .addField('Utilisateurs en tout:', bot.users.size, true)
             .addField("API:", `${Math.round(bot.ping)}ms`, true)
             .addField('Le discord officiel:', '>[Clique ici](https://discord.gg/FQE9x8R)< pour rejoindre le discord de SkyDream !', true)
-            .setFooter("Exécutée par:" + " " + message.author.tag);
+            .setFooter(message.author.tag + " | " + timestamp);
 
         return message.channel.send(embed);
     }
@@ -97,7 +101,7 @@ bot.on('message', async message => {
         .addField('Jeu:', member.user.presence.game ? member.user.presence.game.name : 'pas de jeux', true)
         .addField('Arriver sur le serveur:', moment(message.guild.members.get(member.id).joinedAt).format("LL"), true)
         .addField('Compte discord crée le:', moment(member.user.createdAt).format("LL"), true)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         message.channel.send(embed)
 
     }
@@ -120,7 +124,7 @@ bot.on('message', async message => {
         .addField(`${PREFIX}kill (mention)`, "Tuez toutes les personnes que vous souhaitez")
         .addField(`${PREFIX}bingo <nombre entre 0 et 5000> <temps [1000 = 1sec]>`, "Démare un bongo a temps limiter !")
         .addField(`${PREFIX}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         message.channel.send(help)
         //.then(async function (help) {
         //    await help.react('⏪')
@@ -138,7 +142,7 @@ bot.on('message', async message => {
         .addField(`${PREFIX}clear <nombre>`, 'Fait le ménage.')
         .addField(`${PREFIX}sondage <question>`, "Crée un sondage pour avoir l'avis des autres.")
         .addField(`${PREFIX}mute <mention> <temps>`, "mute uns personne avec un temps désigner.")
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         message.channel.send(help2);
     }
 
@@ -161,7 +165,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', reportedReason)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         reportedUser.createDM().then(channel => {
         channel.send(reportmp);
         });
@@ -218,7 +222,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', kickReason)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         kickUser.createDM().then(channel => {
         channel.send(kickmp);
         });
@@ -275,7 +279,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Du serveur:', message.guild.name)
         .addField('Pour la raison suivante:', banReason)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         banUser.createDM().then(channel => {
         channel.send(banmp);
         });
@@ -293,7 +297,7 @@ bot.on('message', async message => {
             )
         .addField('Canal:', message.channel)
         .addField('Raison:', banReason)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
 
         let banChannel = message.guild.channels.find(x => x.name === "logs");
         if (!banChannel) {
@@ -319,7 +323,7 @@ bot.on('message', async message => {
     .setColor("RANDOM")
     .addField("Question:", question)
     .addField("Réponse:", replies[res])
-    .setFooter("Exécutée par:" + " " + message.author.tag);
+    .setFooter(message.author.tag + " | " + timestamp);
     message.channel.send(Ball8);
     }
 
@@ -328,7 +332,7 @@ bot.on('message', async message => {
         let liens = new Discord.RichEmbed()
         .setTitle("L'invitation:")
         .addField("Lien pour m'inviter:", ">[Clique ici](https://discordapp.com/oauth2/authorize?client_id=533636873197715456&scope=bot&permissions=8)< pour m'inviter sur ton serveur !")
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         message.channel.send(liens);
     }
     
@@ -353,7 +357,7 @@ bot.on('message', async message => {
             .addField('Messages suprimer:', `${args[0]}`)
             .addField('Dans le salon:', message.channel)
             .addField('Par:', message.author.tag)
-            .setFooter("Exécutée par:" + " " + message.author.tag);
+            .setFooter(message.author.tag + " | " + timestamp);
             clearChannel.send(ménageEmbed);
  
         message.channel.bulkDelete(args[0]).then(() => {
@@ -377,7 +381,7 @@ bot.on('message', async message => {
         .setTitle('Say:')
         .setColor('RANDOM')
         .addField('Message:', messagetobot)
-        .setFooter("Exécutée par:" + " " + message.author.tag)
+        .setFooter(message.author.tag + " | " + timestamp)
         sayChannel.send(messagetobotEmbed);
     message.channel.send(messagetobot);
     message.delete().catch();
@@ -396,7 +400,7 @@ bot.on('message', async message => {
     .setTitle(`Sondage de ${message.author.username}:`)
     .setColor('RANDOM')
     .addField('Question:', args.join(' '))
-    .setFooter("Exécutée par:" + " " + message.author.tag);
+    .setFooter(message.author.tag + " | " + timestamp);
 
     let Mes = await message.channel.send(sondagembed);
     await Mes.react('✅')
@@ -414,7 +418,7 @@ bot.on('message', async message => {
         .addField('Venant de:', message.author.tag)
         .addField('Depuis:', message.guild.name + ' | ' + message.channel.name)
         .addField('Proposition:', messagesug)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
         message.delete().catch();
 
         var Mes2 = await bot.channels.get(`533926069045297167`)
@@ -433,7 +437,7 @@ bot.on('message', async message => {
       .setColor('RANDOM')
       .setTitle("Avatar de:" + " " + user1.username)
       .setImage(ava1)
-      .setFooter("Exécutée par:" + " " + message.author.tag);
+      .setFooter(message.author.tag + " | " + timestamp);
   message.channel.send(embedav);
     }
 
@@ -454,7 +458,7 @@ bot.on('message', async message => {
         .setColor('RANDOM')
         .addField('Calcul:', args.join(' '))
         .addField('Résultat:', calcul)
-        .setFooter("Exécutée par:" + " " + message.author.tag);
+        .setFooter(message.author.tag + " | " + timestamp);
   message.channel.send(mathembed);
     }
  
@@ -561,7 +565,7 @@ bot.on('message', async message => {
   .addField("Muteur:", message.author)
   .addField("Muté:", tomute)
   .addField("Depuis le salon:", message.channel.name)
-  .setFooter("Exécutée par:" + " " + message.author.tag);
+  .setFooter(message.author.tag + " | " + timestamp);
 
   muteChannel.send(mutembed);
 
