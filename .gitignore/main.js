@@ -138,7 +138,7 @@ bot.on('message', async message => {
         .addField(`${PREFIX}ban <mention> <raison>`, 'ban un utilisateur.')
         .addField(`${PREFIX}clear <nombre>`, 'Fait le ménage.')
         .addField(`${PREFIX}sondage <question>`, "Crée un sondage pour avoir l'avis des autres.")
-       
+        .addField(`${PREFIX}mute <mention> <temps>`, "mute uns personne avec un temps désigner.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help2);
     }
@@ -555,7 +555,17 @@ bot.on('message', async message => {
   await(tomute.addRole(muterole.id));
   message.channel.send(`<@${tomute.id}> est muté pour ${ms(ms(mutetime))} (Oubliez pas de monter le role muté)`);
 
-  setTimeout(function(){
+  let muteChannel = message.guild.channels.find(x => x.name === "logs");
+  let mutembed = new Discord.RichEmbed()
+  .setTitle("Mute:")
+  .setColor("RANDOM")
+  .addField("Muteur:", message.author)
+  .addField("Muté:", tomute)
+  .setFooter("Exécutée par:" + " " + message.author.tag);
+
+  muteChannel.send(mutembed);
+
+    setTimeout(function(){
     tomute.removeRole(muterole.id);
     message.channel.send(`<@${tomute.id}> est unmute!`);
   }, ms(mutetime));
