@@ -1,10 +1,6 @@
 const Discord = require('discord.js');
 
-
-
 const bot = new Discord.Client({disableEveryone: true});
-
-
 
 bot.login(process.env.TOKEN);
 
@@ -123,7 +119,7 @@ bot.on('message', async message => {
         .addField(`${PREFIX}avatar (mention)`, "SkyDream va donner l'avatar de la personne souhaiter.")
         .addField(`${PREFIX}calcul <calcul souhaiter>`, "SkyDream va faire le calcul demander (+|-|*|/)")
         .addField(`${PREFIX}kill (mention)`, "Tuez toutes les personnes que vous souhaitez")
-        .addField(`${PREFIX}bingo <nombre entre 0 et 10000> <temps [1000 = 1sec]>`, "Démare un bongo a temps limiter !")
+        .addField(`${PREFIX}bingo <nombre entre 0 et 5000> <temps [1000 = 1sec]>`, "Démare un bongo a temps limiter !")
         .addField(`${PREFIX}invite`, "Pour avoir l'invitation pour ajouter SkyDream sur ton serveur.")
         .setFooter("Exécutée par:" + " " + message.author.tag);
         message.channel.send(help)
@@ -257,7 +253,7 @@ bot.on('message', async message => {
 
     //ban
     if (command === `${PREFIX}ban`) {
-        let  banUser = message.guild.member(
+        let banUser = message.guild.member(
             message.mentions.users.first() || message.guild.members.get(args[0])
         );
         if (!banUser) {
@@ -465,31 +461,31 @@ bot.on('message', async message => {
  
     //fun
     if (command === `${PREFIX}kill`) {
-            let replies = ["s'est fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "s'est fait empoisonner.", "s'est noyé.", "s'est asphyxié.", "s'est suicidé", "s'est pendu", "s'est fait déchiqueter par un zombie.", "est mort de rire."];
+            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisonner.", "ces noyé.", "ces asphyxié.", "ces suicidé"];
             let res = Math.floor((Math.random() * replies.length));
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
 
     message.channel.send(`${member.user.username}`+ " " + replies[res]).then(Message => {
         setTimeout(() => { Message.edit("Réaparition..."); }, 4000);
-        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username} (raison mort: ` + replies[res] + ')'); }, 4000);
+        setTimeout(() => { Message.edit(`Réaparition complète. Rebonjour, ${member.user.username} (raison mort :` + replies[res] + ')'); }, 4000);
     
          });
     }  
     
     //Bingo
     if (command === `${PREFIX}bingo`) {
-    
+    const pretty = require('pretty-ms')
     let limit = message.content.split(" ")[1];
     let temps = message.content.split(" ")[2];
 
-          if(!limit || isNaN(limit) || limit > 10000) {
-              return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 10000] [temps (1000 = 1sec)]`);
+          if(!limit || isNaN(limit) || limit > 5000) {
+              return message.channel.send(`Utilisation de la commande : ${PREFIX}bingo [0 - 5000] [temps (1000 = 1sec)]`);
           }
-   
+          if (!args[0]) return "Envois la commande valide !"
 
-       
-
+          if (!message.author.hasPermission("MANAGE_MESSAGES"))
+          return "Tu na pas la permissions pour faire cela !"
 
             message.channel.send(`Un bingo vient de commencer ! Vous avez **${temps}** minutes pour trouver le nombre mystère qui est compris entre **0** et **${limit}**`)
                 .then(async(m) => {
@@ -522,4 +518,47 @@ bot.on('message', async message => {
                     });
                 });
             }
+
+    //tempmute
+
+    const ms = require("ms");
+
+  if (command === `${PREFIX}mute`) {
+  let auteur = message.author
+  let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!tomute) return message.channel.send("Je ne trouve pas l'user.");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Je ne peut pas le muté!");
+  if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Tu n'a pas les permissions requises.")
+  let muterole = message.guild.roles.find(`name`, "muté");
+  
+  if(!muterole){
+    try{
+      muterole = await message.guild.createRole({
+        name: "muté",
+        color: "#000000",
+        permissions:[]
+      })
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+    }catch(e){
+      console.log(e.stack);
+    }
+  }
+  
+  let mutetime = args[1];
+  if(!mutetime) return message.channel.send("Précise une durée !");
+
+  await(tomute.addRole(muterole.id));
+  message.channel.send(`<@${tomute.id}> est muté pour ${ms(ms(mutetime))} (Oubliez pas de monter le role muté)`);
+
+  setTimeout(function(){
+    tomute.removeRole(muterole.id);
+    message.channel.send(`<@${tomute.id}> est unmute!`);
+  }, ms(mutetime));
+}
+
 });
