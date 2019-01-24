@@ -496,7 +496,7 @@ bot.on('message', async message => {
           }
           if (!args[0]) return "Envois la commande valide !"
 
-          if (!message.author.hasPermission("MANAGE_MESSAGES"))
+          if (!message.member.hasPermission("MANAGE_MESSAGES"))
           return "Tu na pas la permissions pour faire cela !"
 
             message.channel.send(`Un bingo vient de commencer ! Vous avez **${temps}** minutes pour trouver le nombre mystère qui est compris entre **0** et **${limit}**`)
