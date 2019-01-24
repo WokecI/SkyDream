@@ -515,7 +515,7 @@ bot.on('message', async message => {
          
                            
                                 
-                            }
+                            
                             if(response === random) {
                                 await collector.stop(`${collected.author.toString()} a remporté le Bingo, le nombre était: **${random}**`);
                             }
