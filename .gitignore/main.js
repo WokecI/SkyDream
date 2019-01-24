@@ -473,7 +473,7 @@ bot.on('message', async message => {
  
     //fun
     if (command === `${PREFIX}kill`) {
-            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "ces fait empoisonner.", "ces noyé.", "ces asphyxié.", "ces suicidé"];
+            let replies = ["ces fait arraché la tête.", "a été décapité.", "a brûler", "est mort.", "s'est fait empoisonner.", "s'est noyé.", "s'est asphyxié.", "s'est suicidé"];
             let res = Math.floor((Math.random() * replies.length));
         let user = message.mentions.users.first() || message.author;
         let member = message.mentions.members.first() || message.member;
