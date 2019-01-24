@@ -513,10 +513,10 @@ bot.on('message', async message => {
                             let response = await collected.content.trim();
                             response = parseInt(response);
          
-                            if(isNaN(response)) {
-                                return message.channel.send("Ce n'est pas un nombre !");
+                           
+                                
                             }
-                            else if(response === random) {
+                            if(response === random) {
                                 await collector.stop(`${collected.author.toString()} a remporté le Bingo, le nombre était: **${random}**`);
                             }
                         }
